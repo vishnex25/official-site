@@ -790,18 +790,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Slider effect for testimonials
-    const slider = document.getElementById('testimonial-slider');
-    const slides = slider.children;
-    let currentIndex = 0;
 
-    function showSlide(index) {
-        gsap.to(slider, {
-            x: `-${index * 100}%`,
-            duration: 0.6,
-            ease: 'power2.inOut'
-        });
-    }
 
     setInterval(() => {
         currentIndex = (currentIndex + 1) % slides.length;
