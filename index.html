@@ -151,7 +151,7 @@
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
-                z-index: -10;
+                z-index: -1;
                 pointer-events: none;
             }
 
@@ -189,14 +189,10 @@
                 font-size: 1rem;
             }
 
-            /* Mobile background colors for sections - match desktop gradient */
-            #services {
-                background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #c7d2fe, #fbcfe8);
-                background-size: 400% 400%;
-                animation: colorful-background 25s ease infinite;
-                position: relative;
-            }
-
+            /* Mobile backgrounds: set solid backgrounds like desktop */
+            #services,
+            #products,
+            #insights,
             #case-studies {
                 background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #c7d2fe, #fbcfe8);
                 background-size: 400% 400%;
@@ -216,13 +212,9 @@
             }
 
             /* Maintain same gradient backgrounds on tablet - match desktop */
-            #services {
-                background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #c7d2fe, #fbcfe8);
-                background-size: 400% 400%;
-                animation: colorful-background 25s ease infinite;
-                position: relative;
-            }
-
+            #services,
+            #products,
+            #insights,
             #case-studies {
                 background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #c7d2fe, #fbcfe8);
                 background-size: 400% 400%;
@@ -320,8 +312,19 @@
         }
 
         .header-scrolled {
-            background-color: white;
+            background: rgba(255, 255, 255, 0.6);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Glass effect for header over hero only */
+        .header-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .header-scrolled .nav-link,
@@ -420,6 +423,7 @@
 
     <main>
         <section id="hero" class="relative min-h-screen flex items-center text-white overflow-hidden">
+            <div class="mobile-bg-fixed"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
                 <h1
                     class="font-h text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 animate-fade-in-up hero-text-shadow px-4">
@@ -511,7 +515,7 @@
                             collective of expert engineers, visionary strategists, and creative problem-solvers
                             dedicated to co-creating success with our clients. Our culture is built on a foundation of
                             deep collaboration, radical transparency, and a relentless pursuit of excellence.</p>
-                        <div class="grid grid-cols-3 gap-6 sm:gap-8 text-center mt-8 sm:mt-10 px-4 lg:px-0">
+                        <div class="grid grid-cols-2 gap-6 sm:gap-8 text-center mt-8 sm:mt-10 px-4 lg:px-0">
                             <div>
                                 <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-1">10+
                                 </div>
@@ -522,11 +526,11 @@
                                 </div>
                                 <p class="text-slate-500 mt-2 text-sm sm:text-base">Client Satisfaction</p>
                             </div>
-                             <div>
+                             <!-- <div>
                                 <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-3">20+
                                 </div>
                                 <p class="text-slate-500 mt-2 text-sm sm:text-base">Employees</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -754,9 +758,9 @@
                         </li>
                         <li><a href="#" class="text-sm sm:text-base hover:text-white transition-colors">LinkedIn</a>
                         </li>
-                        <li><a href="https://www.instagram.com/your_instagram_id"
+                        <li><a href="https://www.instagram.com/vishnorexzone/"
                                 class="text-sm sm:text-base hover:text-white transition-colors">Instagram</a></li>
-                        <li><a href="#" class="text-sm sm:text-base hover:text-white transition-colors">Twitter</a></li>
+                        <!-- <li><a href="#" class="text-sm sm:text-base hover:text-white transition-colors">Twitter</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -767,8 +771,6 @@
         </div>
     </footer>
 
-    <!-- Form submission now handled by Formspree -->
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     gsap.registerPlugin(ScrollTrigger);
@@ -778,24 +780,58 @@ document.addEventListener('DOMContentLoaded', function () {
     const logoWhite = document.querySelector('.logo-white');
     const logoColor = document.querySelector('.logo-color');
 
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > document.getElementById('hero').offsetHeight) {
+    function updateHeader() {
+        const hero = document.getElementById('hero');
+        const threshold = hero ? hero.offsetHeight : 0;
+        const overHero = window.scrollY <= threshold;
+        if (!overHero) {
             header.classList.add('header-scrolled');
+            header.classList.add('header-glass');
             logoWhite.classList.add('hidden');
             logoColor.classList.remove('hidden');
         } else {
             header.classList.remove('header-scrolled');
+            header.classList.remove('header-glass');
             logoWhite.classList.remove('hidden');
             logoColor.classList.add('hidden');
         }
+    }
+
+    window.addEventListener('scroll', updateHeader);
+    // Run once on load in case the page opens scrolled past hero
+    updateHeader();
+
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+    function openMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+    function closeMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMenu);
+    if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMenu);
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
     });
 
 
 
-    setInterval(() => {
+   /* setInterval(() => {
         currentIndex = (currentIndex + 1) % slides.length;
         showSlide(currentIndex);
-    }, 5000);
+    }, 5000); */
 
     // Contact form submission using Formspree AJAX
     const contactForm = document.getElementById('contact-form');
