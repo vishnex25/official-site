@@ -113,14 +113,13 @@
         }
 
         .fade-in-up {
-            /* DEBUG: Make all fade-in-up elements visible by default */
-            opacity: 1 !important;
-            transform: none !important;
+            opacity: 0;
+            transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-in-up.visible {
-            opacity: 1 !important;
-            transform: none !important;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         #hero {
@@ -279,22 +278,22 @@
         .form-input,
         .form-select,
         .form-textarea {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #374151;
             transition: background-color 0.3s, border-color 0.3s;
         }
 
         .form-input::placeholder,
         .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(107, 114, 128, 0.8);
         }
 
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: #FF7F3E;
+            background-color: rgba(255, 255, 255, 1);
+            border-color: #3B82F6;
             outline: none;
         }
 
@@ -302,7 +301,7 @@
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
         }
@@ -433,7 +432,7 @@
                     style="animation-delay: 0.3s;">
                     Transforming ideas into high-impact software
                 </p>
-                <div class="animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div>
                     <a href="#services"
                         class="bg-transparent text-white font-semibold px-8 py-4 rounded-lg shadow-lg text-lg inline-block transition-all duration-300 border-2 border-white hover:bg-white hover:text-blue-900">
                         Explore Our Services
@@ -591,14 +590,23 @@
                     <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">We are proud to partner with a diverse range of clients.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                    <div class="p-4">
+                    <div class="p-4 flex flex-col items-center">
+                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xs font-bold text-center leading-tight px-1">
+                            EXCEL<br>GROUP
+                        </div>
                         <p class="text-xl font-semibold text-slate-700">Excel Group Institutions</p>
                     </div>
-                    <div class="p-4">
-                         <p class="text-xl font-semibold text-slate-700">SRK Matric School</p>
+                    <div class="p-4 flex flex-col items-center">
+                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+                            SRK
+                        </div>
+                        <p class="text-xl font-semibold text-slate-700">SRK Matric School</p>
                     </div>
-                    <div class="p-4">
-                         <p class="text-xl font-semibold text-slate-700">Acura Constructions</p>
+                    <div class="p-4 flex flex-col items-center">
+                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white text-2xl">
+                            🏗️
+                        </div>
+                        <p class="text-xl font-semibold text-slate-700">Acura Constructions</p>
                     </div>
                 </div>
             </div>
@@ -648,13 +656,13 @@
             </div>
         </section>
 
-       <section id="contact" class="bg-gradient-primary text-white py-16 sm:py-20 md:py-32">
+       <section id="contact" class="bg-blue-50 text-gray-800 py-16 sm:py-20 md:py-32">
      <div class="container mx-auto px-4 sm:px-6">
        <div class="text-center mb-12">
          <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">
            Let's Build Together
          </h2>
-         <p class="text-base sm:text-lg text-gray-200 max-w-2xl mx-auto fade-in-up px-4">
+         <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto fade-in-up px-4">
            Have a project in mind or just want to learn more? We'd love to hear from you. Reach out at <a href="mailto:vishnorextech@gmail.com" class="font-semibold underline hover:text-accent">vishnorextech@gmail.com</a> or fill out the form below.
          </p>
        </div>
@@ -801,29 +809,159 @@ document.addEventListener('DOMContentLoaded', function () {
     // Run once on load in case the page opens scrolled past hero
     updateHeader();
 
-    // Mobile menu toggle
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMobileMenu = document.getElementById('close-mobile-menu');
+    // Fade-in-up animations on scroll
+    const fadeElements = document.querySelectorAll('.fade-in-up');
 
-    function openMenu() {
-        if (!mobileMenu) return;
-        mobileMenu.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-    }
-    function closeMenu() {
-        if (!mobileMenu) return;
-        mobileMenu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
+    function checkFadeElements() {
+        fadeElements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top;
+            const elementBottom = rect.bottom;
+            const windowHeight = window.innerHeight;
+
+            // Trigger animation when element is 20% visible from bottom
+            if (elementTop < windowHeight * 0.8 && elementBottom > 0) {
+                element.classList.add('visible');
+            }
+        });
     }
 
-    if (mobileMenuButton) mobileMenuButton.addEventListener('click', openMenu);
-    if (closeMobileMenu) closeMobileMenu.addEventListener('click', closeMenu);
-    if (mobileMenu) {
-        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    // Check on page load  
+    checkFadeElements();
+
+    // Check on scroll
+    window.addEventListener('scroll', checkFadeElements);
+
+    // === CINEMATIC ANIMATIONS ===
+
+    // Hero Section: Cinematic Entrance
+    const heroTimeline = gsap.timeline();
+    heroTimeline
+        .fromTo("#hero h1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+        .fromTo("#hero p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
+        .fromTo("#hero a[href='#services']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
+
+    // Section Headers: 3D Unfold Effect
+    const sectionHeaders = document.querySelectorAll("section h2, section h3");
+    sectionHeaders.forEach(header => {
+        gsap.set(header, { opacity: 0, y: 30, rotationX: -90 });
+        ScrollTrigger.create({
+            trigger: header,
+            start: "top 80%",
+            onEnter: () => {
+                gsap.to(header, {
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                    duration: 0.8,
+                    ease: "back.out(1.7)"
+                });
+            }
+        });
+    });
+
+    // Service Cards: Elastic Pop-In
+    const serviceCards = document.querySelectorAll(".service-card");
+    serviceCards.forEach((card, index) => {
+        gsap.set(card, { opacity: 0, scale: 0.8, y: 50 });
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top 85%",
+            onEnter: () => {
+                gsap.to(card, {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "elastic.out(1, 0.5)"
+                });
+            }
+        });
+    });
+
+    // About Us Image: Parallax Zoom
+    const aboutImage = document.querySelector("#about img");
+    if (aboutImage) {
+        gsap.set(aboutImage, { opacity: 0, scale: 0.8 });
+        ScrollTrigger.create({
+            trigger: aboutImage,
+            start: "top 80%",
+            end: "bottom 20%",
+            scrub: 1,
+            onEnter: () => {
+                gsap.to(aboutImage, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            },
+            onLeave: () => {
+                gsap.to(aboutImage, {
+                    scale: 1.1,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            },
+            onEnterBack: () => {
+                gsap.to(aboutImage, {
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            }
+        });
     }
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
+
+    // About Us Counters: Number Roll-Up Animation
+    const counters = document.querySelectorAll("#value-counter-1, #value-counter-2");
+    counters.forEach(counter => {
+        const targetValue = counter.textContent.includes('+') ?
+            parseInt(counter.textContent.replace('+', '')) :
+            parseInt(counter.textContent.replace('%', ''));
+
+        gsap.set(counter, { textContent: "0" });
+
+        ScrollTrigger.create({
+            trigger: counter,
+            start: "top 80%",
+            onEnter: () => {
+                gsap.to(counter, {
+                    duration: 2,
+                    textContent: targetValue,
+                    ease: "power2.out",
+                    snap: { textContent: 1 },
+                    onUpdate: function() {
+                        const currentValue = Math.round(this.targets()[0].textContent);
+                        this.targets()[0].textContent = counter.textContent.includes('+') ?
+                            currentValue + "+" :
+                            currentValue + "%";
+                    }
+                });
+            }
+        });
+    });
+
+    // Product & Insight Cards: Slide-In From Side
+    const productCards = document.querySelectorAll("#products .bg-white, #insights .insight-card");
+    productCards.forEach((card, index) => {
+        const direction = index % 2 === 0 ? -50 : 50; // Alternate left/right
+        gsap.set(card, { opacity: 0, x: direction });
+
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top 85%",
+            onEnter: () => {
+                gsap.to(card, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    delay: (index % 3) * 0.1,
+                    ease: "power2.out"
+                });
+            }
+        });
     });
 
 
