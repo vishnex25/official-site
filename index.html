@@ -844,7 +844,7 @@
                             collective of expert engineers, visionary strategists, and creative problem-solvers
                             dedicated to co-creating success with our clients. Our culture is built on a foundation of
                             deep collaboration, radical transparency, and a relentless pursuit of excellence.</p>
-                        <div class="grid grid-cols-1 xs:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-0">
+                        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-0">
                             <div class="p-4">
                                 <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent" id="value-counter-1">10+
                                 </div>
@@ -1274,9 +1274,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // About Us Counters: Number Roll-Up Animation
     const counters = document.querySelectorAll("#value-counter-1, #value-counter-2");
     counters.forEach(counter => {
-        const targetValue = counter.textContent.includes('+') ?
-            parseInt(counter.textContent.replace('+', '')) :
-            parseInt(counter.textContent.replace('%', ''));
+        const originalText = counter.textContent.trim();
+        const hasPlus = originalText.includes('+');
+        const hasPercent = originalText.includes('%');
+        const targetValue = parseInt(originalText.replace(/[+%]/g, ''));
 
         gsap.set(counter, { textContent: "0" });
 
@@ -1291,9 +1292,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     snap: { textContent: 1 },
                     onUpdate: function() {
                         const currentValue = Math.round(this.targets()[0].textContent);
-                        this.targets()[0].textContent = counter.textContent.includes('+') ?
-                            currentValue + "+" :
-                            currentValue + "%";
+                        if (hasPlus) {
+                            this.targets()[0].textContent = currentValue + "+";
+                        } else if (hasPercent) {
+                            this.targets()[0].textContent = currentValue + "%";
+                        } else {
+                            this.targets()[0].textContent = currentValue;
+                        }
                     }
                 });
             }
