@@ -17,6 +17,15 @@
     <!-- EmailJS for client-side email sending -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+
         body {
             color: #2E2E2E;
             font-family: 'Inter', sans-serif;
@@ -25,6 +34,8 @@
             background: linear-gradient(135deg, #f0f4ff, #e0e7ff, #c7d2fe, #fbcfe8);
             background-size: 400% 400%;
             animation: colorful-background 25s ease infinite;
+            margin: 0;
+            padding: 0;
         }
 
         @keyframes colorful-background {
@@ -129,14 +140,157 @@
             background-attachment: fixed;
         }
 
-        /* Mobile optimizations */
+        /* Enhanced Mobile Optimizations */
+        @media (max-width: 480px) {
+            /* Extra small mobile devices */
+            .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+                max-width: 100% !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Prevent horizontal overflow */
+            * {
+                max-width: 100%;
+            }
+
+            #hero {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            #hero .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            #hero h1 {
+                font-size: 1.5rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1rem !important;
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+
+            #hero p {
+                font-size: 0.875rem !important;
+                margin-bottom: 1.5rem !important;
+                word-wrap: break-word;
+            }
+
+            /* Ensure buttons don't overflow */
+            #hero a {
+                display: block !important;
+                width: calc(100% - 2rem) !important;
+                max-width: 280px !important;
+                margin: 0 auto !important;
+                text-align: center !important;
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+
+            .service-card {
+                padding: 1rem !important;
+                margin-bottom: 1rem;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .service-card h3 {
+                font-size: 1.125rem !important;
+                word-wrap: break-word;
+            }
+
+            .service-card p {
+                font-size: 0.875rem !important;
+                line-height: 1.5 !important;
+            }
+
+            .service-card .icon-container {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+                font-size: 1.25rem !important;
+            }
+
+            /* Mobile form optimizations */
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 0.75rem 0.875rem !important;
+                font-size: 0.875rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* Reduce section padding on very small screens */
+            section {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            /* Mobile typography improvements */
+            h2 {
+                font-size: 1.375rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+
+            h3 {
+                font-size: 1.125rem !important;
+                line-height: 1.3 !important;
+                word-wrap: break-word;
+            }
+
+            /* Ensure grid doesn't overflow */
+            .grid {
+                gap: 1rem !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            /* Fix any potential margin issues */
+            * {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .mx-auto {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
         @media (max-width: 768px) {
+            /* Prevent horizontal overflow on all mobile devices */
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+                overflow-x: hidden;
+            }
+
             #hero {
                 min-height: 100vh;
                 padding: 1rem 0;
                 position: relative;
                 /* Remove default background on mobile */
                 background-image: none !important;
+                overflow-x: hidden;
+            }
+
+            #hero .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
 
             /* Fixed background container for mobile */
@@ -156,6 +310,8 @@
 
             .service-card {
                 margin-bottom: 1rem;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
             }
 
             .service-card:hover {
@@ -164,20 +320,23 @@
 
             .testimonial-card {
                 min-height: auto;
+                padding: 1.5rem !important;
             }
 
             #testimonial-slider-container {
-                min-height: 600px;
-            }
-
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                min-height: 500px;
+                overflow-x: hidden;
             }
 
             /* Better mobile navigation */
             #mobile-menu {
                 backdrop-filter: blur(10px);
+            }
+
+            #mobile-menu nav a {
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             /* Improved form spacing on mobile */
@@ -186,6 +345,8 @@
             .form-textarea {
                 padding: 0.875rem 1rem;
                 font-size: 1rem;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             /* Mobile backgrounds: set solid backgrounds like desktop */
@@ -197,17 +358,77 @@
                 background-size: 400% 400%;
                 animation: colorful-background 25s ease infinite;
                 position: relative;
+                overflow-x: hidden;
+            }
+
+            /* Better spacing for mobile grids */
+            .grid {
+                gap: 1rem !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            /* Optimize images for mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Mobile-friendly buttons */
+            button, .btn {
+                min-height: 44px;
+                padding: 0.75rem 1.5rem;
+                max-width: 100%;
+            }
+
+            /* Touch-friendly navigation */
+            .nav-link {
+                padding: 1rem 0;
+                font-size: 1.125rem;
+            }
+
+            /* Ensure all sections don't overflow */
+            section {
+                overflow-x: hidden !important;
+            }
+
+            /* Fix any margin issues that cause overflow */
+            .mx-auto {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* Ensure proper text wrapping */
+            h1, h2, h3, h4, h5, h6, p {
+                word-wrap: break-word;
+                hyphens: auto;
+                overflow-wrap: break-word;
             }
         }
 
-        /* Tablet optimizations */
-        @media (min-width: 768px) and (max-width: 1024px) {
+        /* Enhanced Tablet Optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
             .service-card {
                 min-height: 280px;
+                padding: 2rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.375rem;
             }
 
             #testimonial-slider-container {
-                min-height: 500px;
+                min-height: 450px;
+            }
+
+            .testimonial-card {
+                padding: 2rem;
+            }
+
+            /* Better grid spacing for tablets */
+            .grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.5rem;
             }
 
             /* Maintain same gradient backgrounds on tablet - match desktop */
@@ -219,6 +440,28 @@
                 background-size: 400% 400%;
                 animation: colorful-background 25s ease infinite;
                 position: relative;
+            }
+
+            /* Better typography scaling for tablets */
+            h1 {
+                font-size: 3rem !important;
+            }
+
+            h2 {
+                font-size: 2.5rem !important;
+            }
+
+            /* Container adjustments for tablets */
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            /* Form improvements for tablets */
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 1rem 1.25rem;
             }
         }
 
@@ -365,10 +608,97 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* Additional Responsive Utilities */
+        .text-responsive {
+            font-size: clamp(0.875rem, 2.5vw, 1rem);
+        }
+
+        .heading-responsive {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .subheading-responsive {
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
+        }
+
+        /* Ensure proper spacing on all devices */
+        .section-padding {
+            padding-top: clamp(3rem, 8vw, 8rem);
+            padding-bottom: clamp(3rem, 8vw, 8rem);
+        }
+
+        /* Prevent horizontal scroll globally */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Container fixes */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Enhanced touch targets for mobile */
+        @media (max-width: 768px) {
+            button, 
+            .btn, 
+            a[role="button"],
+            input[type="submit"] {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 0.75rem 1rem;
+                max-width: 100%;
+            }
+
+            /* Improve text readability */
+            body {
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+            }
+
+            /* Better focus states for accessibility */
+            *:focus {
+                outline: 2px solid #4564ED;
+                outline-offset: 2px;
+            }
+
+            /* Force proper width constraints */
+            .w-full {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* Ensure no elements exceed viewport */
+            .max-w-full {
+                max-width: 100% !important;
+            }
+        }
+
+        /* Landscape mobile optimizations */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #hero {
+                min-height: 100vh;
+                padding: 2rem 0;
+            }
+
+            #hero h1 {
+                font-size: 2rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            section {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+        }
     </style>
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden max-w-full">
 
     <!-- <div id="preloader" class="fixed inset-0 bg-gradient-preloader z-[100] flex items-center justify-center">
         <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-20">
@@ -421,20 +751,20 @@
     </div>
 
     <main>
-        <section id="hero" class="relative min-h-screen flex items-center text-white overflow-hidden">
+        <section id="hero" class="relative min-h-screen flex items-center text-white overflow-hidden w-full max-w-full">
             <div class="mobile-bg-fixed"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="container mx-auto px-4 sm:px-6 text-center relative z-10 w-full max-w-full">
                 <h1
-                    class="font-h text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight mb-6 animate-fade-in-up hero-text-shadow px-4">
+                    class="font-h text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight mb-4 sm:mb-6 animate-fade-in-up hero-text-shadow px-2 sm:px-4 w-full max-w-full word-wrap break-words">
                     Custom Software Solutions to Help Your Business Succeed
                 </h1>
-                <p class="text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-8 animate-fade-in-up hero-text-shadow px-4"
+                <p class="text-sm xs:text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-200 mb-6 sm:mb-8 animate-fade-in-up hero-text-shadow px-2 sm:px-4 w-full"
                     style="animation-delay: 0.3s;">
                     Transforming ideas into high-impact software
                 </p>
-                <div>
+                <div class="px-2 sm:px-4 w-full max-w-full">
                     <a href="#services"
-                        class="bg-transparent text-white font-semibold px-8 py-4 rounded-lg shadow-lg text-lg inline-block transition-all duration-300 border-2 border-white hover:bg-white hover:text-blue-900">
+                        class="bg-transparent text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg text-base sm:text-lg inline-block transition-all duration-300 border-2 border-white hover:bg-white hover:text-blue-900 w-full sm:w-auto max-w-sm mx-auto block sm:inline-block">
                         Explore Our Services
                     </a>
                 </div>
@@ -450,80 +780,80 @@
                         We empower businesses and higher education institutions with cutting-edge, AI-driven solutions. By harnessing automation and data-driven insights, we deliver end-to-end technology services designed to solve complex challenges and create lasting value.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-red-100 flex items-center justify-center text-2xl sm:text-3xl text-red-500">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-red-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-red-500">
                             &#60;/&#62;</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">Web Development & Design</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">We design and build high-performance, scalable, and secure web solutions, from sleek corporate websites to complex e-commerce platforms and SaaS products, ensuring fast load times and intuitive UX/UI.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Web Development & Design</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We design and build high-performance, scalable, and secure web solutions, from sleek corporate websites to complex e-commerce platforms and SaaS products, ensuring fast load times and intuitive UX/UI.</p>
                     </div>
-                     <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-2xl sm:text-3xl text-purple-500">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-purple-500">
                             💡</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">AI & Smart Automation</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">Leveraging AI to unlock predictive insights and automate processes. Our services include AI Chatbots for 24/7 support and Smart Automation to boost efficiency, reduce errors, and lower operational costs.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">AI & Smart Automation</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Leveraging AI to unlock predictive insights and automate processes. Our services include AI Chatbots for 24/7 support and Smart Automation to boost efficiency, reduce errors, and lower operational costs.</p>
                     </div>
-                     <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-2xl sm:text-3xl text-blue-500">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-blue-500">
                             ☁️</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">Cloud & DevOps</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">Architecting scalable, resilient, and cost-efficient cloud-native infrastructures with automated CI/CD pipelines for rapid and reliable innovation.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Cloud & DevOps</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Architecting scalable, resilient, and cost-efficient cloud-native infrastructures with automated CI/CD pipelines for rapid and reliable innovation.</p>
                     </div>
-                    <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-green-100 flex items-center justify-center text-2xl sm:text-3xl text-green-500">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-green-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-green-500">
                             🛡️</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">Cybersecurity</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">Implementing robust security protocols and proactive threat intelligence to protect your most critical digital assets and ensure data safety.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Cybersecurity</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Implementing robust security protocols and proactive threat intelligence to protect your most critical digital assets and ensure data safety.</p>
                     </div>
-                    <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-2xl sm:text-3xl text-yellow-500">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-yellow-500">
                             📊</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">Data & Analytics</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">Transforming raw data into actionable business intelligence. We build predictive analytics platforms that provide instant insights for quick decision-making.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Data & Analytics</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Transforming raw data into actionable business intelligence. We build predictive analytics platforms that provide instant insights for quick decision-making.</p>
                     </div>
-                    <div class="service-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm fade-in-up">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
-                            class="icon-container w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-6 rounded-xl bg-accent bg-opacity-20 flex items-center justify-center text-2xl sm:text-3xl text-accent">
+                            class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-accent bg-opacity-20 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-accent">
                             🤝</div>
-                        <h3 class="font-h text-xl sm:text-2xl font-semibold mb-3">Higher Education Management</h3>
-                        <p class="text-slate-500 text-sm sm:text-base">We deliver end-to-end higher education management through innovative software, streamlining administration, enhancing learning experiences, and driving institutional growth from admissions to alumni engagement.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Higher Education Management</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We deliver end-to-end higher education management through innovative software, streamlining administration, enhancing learning experiences, and driving institutional growth from admissions to alumni engagement.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="py-16 sm:py-20 md:py-32 bg-white">
+        <section id="about" class="py-12 sm:py-16 md:py-20 lg:py-32 bg-white">
             <div class="container mx-auto px-4 sm:px-6">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
                     <div class="fade-in-up order-2 lg:order-1">
                         <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80"
                             alt="Vishnorex Team Collaboration"
-                            class="rounded-2xl shadow-xl w-full max-w-sm sm:max-w-md lg:max-w-md mx-auto"
+                            class="rounded-2xl shadow-xl w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto"
                             style="height:auto; max-height:400px; object-fit:cover;">
                     </div>
                     <div class="fade-in-up order-1 lg:order-2 text-center lg:text-left">
-                        <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-6 px-4 lg:px-0">We are your
+                        <h2 class="font-h text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0">We are your
                             strategic technology partner.</h2>
-                        <p class="text-base sm:text-lg text-slate-500 mb-6 px-4 lg:px-0">Vishnorex was founded on a
+                        <p class="text-sm sm:text-base lg:text-lg text-slate-500 mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0 leading-relaxed">Vishnorex was founded on a
                             simple principle: technology should be a catalyst for growth, not a constraint. We are a
                             collective of expert engineers, visionary strategists, and creative problem-solvers
                             dedicated to co-creating success with our clients. Our culture is built on a foundation of
                             deep collaboration, radical transparency, and a relentless pursuit of excellence.</p>
-                        <div class="grid grid-cols-2 gap-6 sm:gap-8 text-center mt-8 sm:mt-10 px-4 lg:px-0">
-                            <div>
-                                <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-1">10+
+                        <div class="grid grid-cols-1 xs:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-0">
+                            <div class="p-4">
+                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent" id="value-counter-1">10+
                                 </div>
-                                <p class="text-slate-500 mt-2 text-sm sm:text-base">Successful Projects</p>
+                                <p class="text-slate-500 mt-2 text-xs sm:text-sm lg:text-base">Successful Projects</p>
                             </div>
-                            <div>
-                                <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-2">98%
+                            <div class="p-4">
+                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent" id="value-counter-2">98%
                                 </div>
-                                <p class="text-slate-500 mt-2 text-sm sm:text-base">Client Satisfaction</p>
+                                <p class="text-slate-500 mt-2 text-xs sm:text-sm lg:text-base">Client Satisfaction</p>
                             </div>
                              <!-- <div>
                                 <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-3">20+
@@ -542,41 +872,26 @@
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">Our Products</h2>
                     <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto fade-in-up px-4">We develop tailored software products that meet the evolving needs of modern businesses and educational institutions.</p>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction Site Management" class="w-full h-48 object-cover">
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-2xl font-bold mb-4">Construction Site Management</h3>
-                            <p class="text-slate-500 mb-6 flex-grow">An all-in-one browser extension for smarter jobsite management. Monitor progress, collaborate with your team, and track resources without leaving your browser.</p>
-                            <!-- <ul class="text-slate-600 space-y-3 text-sm mt-auto">
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Real-Time Project Tracking & Team Collaboration</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Instant Document, Equipment & Inventory Access</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Automated Safety Compliance Alerts</li>
-                            </ul> -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction Site Management" class="w-full h-48 sm:h-56 object-cover">
+                        <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Construction Site Management</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">An all-in-one browser extension for smarter jobsite management. Monitor progress, collaborate with your team, and track resources without leaving your browser.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Library Management System" class="w-full h-48 object-cover">
-                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-2xl font-bold mb-4">Library Management System</h3>
-                            <p class="text-slate-500 mb-6 flex-grow">Transform your library into a modern, automated hub. Designed for schools and universities to simplify book tracking, member management, and administrative tasks.</p>
-                             <!-- <ul class="text-slate-600 space-y-3 text-sm mt-auto">
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Easy Book Management with Barcode/RFID Integration</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> User-Friendly Dashboard with Advanced Search</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Automated Due Date Alerts & Online Fine Payment</li>
-                            </ul> -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
+                        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Library Management System" class="w-full h-48 sm:h-56 object-cover">
+                         <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Library Management System</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">Transform your library into a modern, automated hub. Designed for schools and universities to simplify book tracking, member management, and administrative tasks.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
-                         <img src="https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Staff Management System" class="w-full h-48 object-cover">
-                         <div class="p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-2xl font-bold mb-4">Staff Management System</h3>
-                            <p class="text-slate-500 mb-6 flex-grow">Streamline your workforce, boost productivity, and simplify HR operations. Our system automates workforce management for businesses of all sizes.</p>
-                            <!-- <ul class="text-slate-600 space-y-3 text-sm mt-auto">
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Centralized Employee Database</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Real-time Attendance, Time, and Shift Tracking</li>
-                                <li class="flex items-start"><span class="text-accent mr-2 mt-1">&#10003;</span> Seamless Payroll Integration</li>
-                            </ul> -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full md:col-span-2 lg:col-span-1">
+                         <img src="https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Staff Management System" class="w-full h-48 sm:h-56 object-cover">
+                         <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Staff Management System</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">Streamline your workforce, boost productivity, and simplify HR operations. Our system automates workforce management for businesses of all sizes.</p>
                         </div>
                     </div>
                 </div>
@@ -589,15 +904,15 @@
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Our Valued Clients</h2>
                     <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">We are proud to partner with a diverse range of clients.</p>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                    <div class="p-4 flex flex-col items-center">
-                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xs font-bold text-center leading-tight px-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-center">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xs font-bold text-center leading-tight px-1">
                             EXCEL<br>GROUP
                         </div>
-                        <p class="text-xl font-semibold text-slate-700">Excel Group Institutions</p>
+                        <p class="text-lg sm:text-xl font-semibold text-slate-700">Excel Group Institutions</p>
                     </div>
-                    <div class="p-4 flex flex-col items-center">
-                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-2xl font-bold">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
                             SRK
                         </div>
                         <p class="text-xl font-semibold text-slate-700">SRK Matric School</p>
@@ -669,32 +984,32 @@
 
        <!-- Form now uses Formspree for submission -->
 
-       <div class="max-w-4xl mx-auto fade-in-up">
+       <div class="max-w-4xl mx-auto fade-in-up px-4 sm:px-6">
          <form id="contact-form" action="https://formspree.io/f/movlrady" method="POST">
            <input type="hidden" name="form-name" value="newsletter" />
 
-           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
              <div>
                <label for="full-name" class="block text-sm font-medium mb-2">Full Name</label>
                <input type="text" id="full-name" name="name" required
-                 class="form-input w-full px-4 py-3 rounded-lg" placeholder="John Doe">
+                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
              </div>
 
              <div>
                <label for="company-name" class="block text-sm font-medium mb-2">Company Name</label>
                <input type="text" id="company-name" name="company"
-                 class="form-input w-full px-4 py-3 rounded-lg" placeholder="Your Company Inc.">
+                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
              </div>
 
              <div>
                <label for="work-email" class="block text-sm font-medium mb-2">Work Email</label>
                <input type="email" id="work-email" name="email" required
-                 class="form-input w-full px-4 py-3 rounded-lg" placeholder="you@company.com">
+                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
              </div>
 
              <div>
                <label for="interest" class="block text-sm font-medium mb-2">How can we help?</label>
-               <select id="interest" name="interest" required class="form-select w-full px-4 py-3 rounded-lg">
+               <select id="interest" name="interest" required class="form-select w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
                  <option value="">Select a service...</option>
                  <option>Web Development & Design</option>
                  <option>AI & Smart Automation</option>
@@ -706,16 +1021,16 @@
              </div>
            </div>
 
-           <div class="mt-6">
+           <div class="mt-4 sm:mt-6">
              <label for="message" class="block text-sm font-medium mb-2">Message</label>
              <textarea id="message" name="message" rows="5" required
-               class="form-textarea w-full px-4 py-3 rounded-lg"
+               class="form-textarea w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
                placeholder="Tell us about your project or inquiry..."></textarea>
            </div>
 
-           <div class="mt-8 text-center">
+           <div class="mt-6 sm:mt-8 text-center">
              <button type="submit"
-               class="bg-accent text-white font-semibold px-10 py-4 rounded-lg shadow-lg text-lg inline-block transform hover:scale-105 transition-all duration-300">
+               class="bg-accent text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-lg shadow-lg text-base sm:text-lg inline-block transform hover:scale-105 transition-all duration-300 w-full sm:w-auto">
                Send Message
              </button>
            </div>
@@ -808,6 +1123,48 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', updateHeader);
     // Run once on load in case the page opens scrolled past hero
     updateHeader();
+
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+    // Open mobile menu
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    }
+
+    // Close mobile menu
+    if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+    }
+
+    // Close mobile menu when clicking on a nav link
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
+    if (mobileMenuLinks) {
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            });
+        });
+    }
+
+    // Close mobile menu when clicking outside of it
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+    }
 
     // Fade-in-up animations on scroll
     const fadeElements = document.querySelectorAll('.fade-in-up');
