@@ -21,10 +21,22 @@
             box-sizing: border-box;
         }
 
-        html,
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            max-width: 100vw;
+            /* Improve mobile scrolling performance */
+            -webkit-overflow-scrolling: touch;
+            scroll-padding-top: 80px;
+            /* Account for fixed header */
+        }
+
         body {
             overflow-x: hidden;
             max-width: 100vw;
+            /* Optimize mobile scrolling */
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
 
         body {
@@ -277,11 +289,19 @@
 
         @media (max-width: 768px) {
 
-            /* Prevent horizontal overflow on all mobile devices */
+            /* Optimize mobile scrolling performance */
             html,
             body {
                 overflow-x: hidden !important;
                 max-width: 100vw !important;
+                -webkit-overflow-scrolling: touch !important;
+                overscroll-behavior: contain !important;
+                scroll-behavior: smooth !important;
+            }
+
+            /* Improve touch scrolling momentum */
+            * {
+                -webkit-overflow-scrolling: touch;
             }
 
             .container {
@@ -511,9 +531,25 @@
                 font-size: 1.125rem;
             }
 
-            /* Ensure all sections don't overflow */
+            /* Ensure all sections don't overflow and optimize scrolling */
             section {
                 overflow-x: hidden !important;
+                -webkit-overflow-scrolling: touch;
+                transform: translateZ(0);
+                /* Enable hardware acceleration */
+                will-change: scroll-position;
+            }
+
+            /* Optimize scrollable containers */
+            .container {
+                transform: translateZ(0);
+                /* Hardware acceleration */
+                backface-visibility: hidden;
+            }
+
+            /* Smooth scroll for anchor links */
+            a[href^="#"] {
+                scroll-behavior: smooth;
             }
 
             /* Fix any margin issues that cause overflow */
@@ -780,6 +816,30 @@
         /* Enhanced touch targets for mobile */
         @media (max-width: 768px) {
 
+            /* Prevent scroll bounce and improve performance */
+            body {
+                position: relative;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
+                touch-action: pan-y;
+                /* Allow vertical scrolling only */
+            }
+
+            /* Prevent body scroll when mobile menu is open */
+            body.menu-open {
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Optimize fixed header for mobile scrolling */
+            #main-header {
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                will-change: transform;
+            }
+
             button,
             .btn,
             a[role="button"],
@@ -788,12 +848,32 @@
                 min-width: 44px;
                 padding: 0.75rem 1rem;
                 max-width: 100%;
+                touch-action: manipulation;
+                /* Improve touch responsiveness */
             }
 
-            /* Improve text readability */
+            /* Improve text readability and scrolling */
             body {
                 -webkit-text-size-adjust: 100%;
                 text-size-adjust: 100%;
+                /* Prevent momentum scrolling issues */
+                overscroll-behavior-y: contain;
+                scroll-snap-type: y proximity;
+            }
+
+            /* Optimize animations for mobile */
+            * {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+            /* Smooth section transitions */
+            section {
+                scroll-snap-align: start;
+                scroll-margin-top: 80px;
+                /* Account for fixed header */
             }
 
             /* Better focus states for accessibility */
@@ -1380,7 +1460,19 @@
                 }
             }
 
-            window.addEventListener('scroll', updateHeader);
+            // Optimize scroll performance for mobile
+            let ticking = false;
+            function optimizedUpdateHeader() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateHeader();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', optimizedUpdateHeader, { passive: true });
             // Run once on load in case the page opens scrolled past hero
             updateHeader();
 
@@ -1392,7 +1484,7 @@
             function openMobileMenu() {
                 mobileMenu.classList.remove('hidden');
                 mobileMenuButton.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                document.body.classList.add('menu-open');
                 // Trigger animation after a small delay to ensure element is visible
                 setTimeout(() => {
                     mobileMenu.classList.add('show');
@@ -1402,7 +1494,7 @@
             function closeMobileMenuFunc() {
                 mobileMenu.classList.remove('show');
                 mobileMenuButton.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                document.body.classList.remove('menu-open');
                 // Hide element after animation completes
                 setTimeout(() => {
                     mobileMenu.classList.add('hidden');
@@ -1444,6 +1536,29 @@
                 }
             });
 
+            // Enhanced smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = document.getElementById('main-header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight - 20;
+
+                        // Use smooth scrolling with better mobile support
+                        if ('scrollBehavior' in document.documentElement.style) {
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            // Fallback for older browsers
+                            window.scrollTo(0, targetPosition);
+                        }
+                    }
+                });
+            });
+
             // Fade-in-up animations on scroll
             const fadeElements = document.querySelectorAll('.fade-in-up');
 
@@ -1464,8 +1579,20 @@
             // Check on page load  
             checkFadeElements();
 
-            // Check on scroll
-            window.addEventListener('scroll', checkFadeElements);
+            // Optimize scroll performance for fade animations
+            let fadeAnimationTicking = false;
+            function optimizedCheckFadeElements() {
+                if (!fadeAnimationTicking) {
+                    requestAnimationFrame(() => {
+                        checkFadeElements();
+                        fadeAnimationTicking = false;
+                    });
+                    fadeAnimationTicking = true;
+                }
+            }
+
+            // Check on scroll with optimized performance
+            window.addEventListener('scroll', optimizedCheckFadeElements, { passive: true });
 
             // === CINEMATIC ANIMATIONS ===
 
