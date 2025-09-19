@@ -148,14 +148,16 @@
         }
 
         #hero {
-            background-image: url('./assets/bg.webp');
+            background: linear-gradient(135deg, #4564ED, #162A80);
+            background-image: url('assets/bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
         #footer {
-            background-image: url('./assets/bg.webp');
+            background: linear-gradient(135deg, #4564ED, #162A80);
+            background-image: url('assets/bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -538,6 +540,9 @@
                 transform: translateZ(0);
                 /* Enable hardware acceleration */
                 will-change: scroll-position;
+                /* Prevent layout shifts that cause scroll issues */
+                contain: layout style;
+                position: relative;
             }
 
             /* Optimize scrollable containers */
@@ -825,6 +830,15 @@
                 /* Allow vertical scrolling only */
             }
 
+            /* Fix scroll sticking issues on mobile */
+            .service-card,
+            .insight-card,
+            .testimonial-card {
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                will-change: auto;
+            }
+
             /* Prevent body scroll when mobile menu is open */
             body.menu-open {
                 overflow: hidden;
@@ -858,7 +872,7 @@
                 text-size-adjust: 100%;
                 /* Prevent momentum scrolling issues */
                 overscroll-behavior-y: contain;
-                scroll-snap-type: y proximity;
+                /* Remove scroll-snap that causes sticking issues */
             }
 
             /* Optimize animations for mobile */
@@ -871,7 +885,7 @@
 
             /* Smooth section transitions */
             section {
-                scroll-snap-align: start;
+                /* Remove scroll-snap-align that causes sticking */
                 scroll-margin-top: 80px;
                 /* Account for fixed header */
             }
@@ -917,15 +931,15 @@
 <body class="overflow-x-hidden max-w-full">
 
     <!-- <div id="preloader" class="fixed inset-0 bg-gradient-preloader z-[100] flex items-center justify-center">
-        <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-20">
+        <img src="assets/whitebg.png" alt="Vishnorex Logo" class="h-20">
     </div> -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex justify-between items-center">
                 <a href="#hero" class="flex-shrink-0">
-                    <img src="./assets/whitebg.png" alt="Vishnorex Logo White"
+                    <img src="assets/whitebg.png" alt="Vishnorex Logo White"
                         class="h-8 sm:h-10 md:h-12 transition-all duration-300 logo-white">
-                    <img src="./assets/nobg.png" alt="Vishnorex Logo Color"
+                    <img src="assets/nobg.png" alt="Vishnorex Logo Color"
                         class="h-8 sm:h-10 md:h-12 transition-all duration-300 logo-color hidden">
                 </a>
                 <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8">
@@ -965,7 +979,7 @@
         <div class="relative h-full flex flex-col">
             <!-- Header with close button -->
             <div class="flex justify-between items-center p-6 sm:p-8">
-                <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-8 sm:h-10">
+                <img src="assets/whitebg.png" alt="Vishnorex Logo" class="h-8 sm:h-10">
                 <button id="close-mobile-menu"
                     class="text-white hover:text-accent transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
                     <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1373,7 +1387,7 @@
         <div class="container mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-12">
                 <div class="sm:col-span-3 lg:col-span-1 text-center sm:text-left">
-                    <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-10 sm:h-12 mb-4 mx-auto sm:mx-0">
+                    <img src="assets/whitebg.png" alt="Vishnorex Logo" class="h-10 sm:h-12 mb-4 mx-auto sm:mx-0">
                     <p class="text-sm sm:text-base max-w-xs mx-auto sm:mx-0 text-gray-200">Transforming ideas into
                         high-impact software.</p>
                 </div>
@@ -1437,6 +1451,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             gsap.registerPlugin(ScrollTrigger);
+
+            // Optimize ScrollTrigger for mobile
+            if (window.innerWidth <= 768) {
+                ScrollTrigger.config({
+                    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+                    ignoreMobileResize: true
+                });
+            }
 
             // Navbar scroll effect
             const header = document.getElementById('main-header');
@@ -1559,6 +1581,33 @@
                 });
             });
 
+            // Handle image loading errors gracefully
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function () {
+                    console.warn('Failed to load image:', this.src);
+                    // Hide broken images gracefully
+                    this.style.display = 'none';
+                });
+            });
+
+            // Fix mobile scroll issues
+            if (window.innerWidth <= 768) {
+                // Refresh ScrollTrigger after a delay to prevent scroll sticking
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                }, 1000);
+
+                // Add touch event optimization
+                document.addEventListener('touchstart', function () { }, { passive: true });
+                document.addEventListener('touchmove', function () { }, { passive: true });
+
+                // Disable problematic animations on mobile
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.style.transform = 'none';
+                    card.style.opacity = '1';
+                });
+            }
+
             // Fade-in-up animations on scroll
             const fadeElements = document.querySelectorAll('.fade-in-up');
 
@@ -1603,43 +1652,82 @@
                 .fromTo("#hero p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
                 .fromTo("#hero a[href='#services']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
 
-            // Section Headers: 3D Unfold Effect
+            // Section Headers: Optimized for mobile
             const sectionHeaders = document.querySelectorAll("section h2, section h3");
+            const isMobile = window.innerWidth <= 768;
+
             sectionHeaders.forEach(header => {
-                gsap.set(header, { opacity: 0, y: 30, rotationX: -90 });
-                ScrollTrigger.create({
-                    trigger: header,
-                    start: "top 80%",
-                    onEnter: () => {
-                        gsap.to(header, {
-                            opacity: 1,
-                            y: 0,
-                            rotationX: 0,
-                            duration: 0.8,
-                            ease: "back.out(1.7)"
-                        });
-                    }
-                });
+                if (isMobile) {
+                    // Simpler animation for mobile to prevent scroll issues
+                    gsap.set(header, { opacity: 0, y: 20 });
+                    ScrollTrigger.create({
+                        trigger: header,
+                        start: "top 90%",
+                        onEnter: () => {
+                            gsap.to(header, {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.5,
+                                ease: "power2.out"
+                            });
+                        }
+                    });
+                } else {
+                    // Full animation for desktop
+                    gsap.set(header, { opacity: 0, y: 30, rotationX: -90 });
+                    ScrollTrigger.create({
+                        trigger: header,
+                        start: "top 80%",
+                        onEnter: () => {
+                            gsap.to(header, {
+                                opacity: 1,
+                                y: 0,
+                                rotationX: 0,
+                                duration: 0.8,
+                                ease: "back.out(1.7)"
+                            });
+                        }
+                    });
+                }
             });
 
-            // Service Cards: Elastic Pop-In
+            // Service Cards: Optimized for mobile
             const serviceCards = document.querySelectorAll(".service-card");
             serviceCards.forEach((card, index) => {
-                gsap.set(card, { opacity: 0, scale: 0.8, y: 50 });
-                ScrollTrigger.create({
-                    trigger: card,
-                    start: "top 85%",
-                    onEnter: () => {
-                        gsap.to(card, {
-                            opacity: 1,
-                            scale: 1,
-                            y: 0,
-                            duration: 0.6,
-                            delay: index * 0.1,
-                            ease: "elastic.out(1, 0.5)"
-                        });
-                    }
-                });
+                if (isMobile) {
+                    // Simpler animation for mobile
+                    gsap.set(card, { opacity: 0, y: 30 });
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: "top 90%",
+                        onEnter: () => {
+                            gsap.to(card, {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.4,
+                                delay: index * 0.05,
+                                ease: "power2.out"
+                            });
+                        }
+                    });
+                } else {
+                    // Full animation for desktop
+                    gsap.set(card, { opacity: 0, scale: 0.8, y: 50 });
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: "top 85%",
+                        onEnter: () => {
+                            gsap.to(card, {
+                                opacity: 1,
+                                scale: 1,
+                                y: 0,
+                                duration: 0.6,
+                                delay: index * 0.1,
+                                ease: "elastic.out(1, 0.5)"
+                            });
+                        }
+                    });
+                }
             });
 
             // About Us Image: Parallax Zoom
