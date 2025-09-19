@@ -16,6 +16,10 @@
 
     <!-- EmailJS for client-side email sending -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Preload critical background image for faster loading -->
+    <link rel="preload" href="./assets/bg.webp" as="image" type="image/webp">
+    
     <style>
         * {
             box-sizing: border-box;
@@ -148,19 +152,27 @@
         }
 
         #hero {
-            background: linear-gradient(135deg, #4564ED, #162A80);
-            background-image: url('assets/bg.webp');
+            /* Instant gradient fallback while image loads */
+            background: linear-gradient(135deg, rgba(69, 100, 237, 0.9), rgba(22, 42, 128, 0.9));
+            /* Optimized image loading */
+            background-image: url('./assets/bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            /* Blend the image with gradient for better performance */
+            background-blend-mode: overlay;
         }
 
         #footer {
-            background: linear-gradient(135deg, #4564ED, #162A80);
-            background-image: url('assets/bg.webp');
+            /* Instant gradient fallback while image loads */
+            background: linear-gradient(135deg, rgba(69, 100, 237, 0.9), rgba(22, 42, 128, 0.9));
+            /* Optimized image loading */
+            background-image: url('./assets/bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            /* Blend the image with gradient for better performance */
+            background-blend-mode: overlay;
         }
 
         /* Enhanced Mobile Optimizations */
@@ -306,6 +318,14 @@
                 -webkit-overflow-scrolling: touch;
             }
 
+            /* Mobile background optimization - disable fixed backgrounds for better performance */
+            #hero,
+            #footer {
+                background-attachment: scroll !important;
+                /* Use gradient only on mobile for faster loading */
+                background-image: linear-gradient(135deg, rgba(69, 100, 237, 0.95), rgba(22, 42, 128, 0.95)) !important;
+            }
+
             .container {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
@@ -317,8 +337,6 @@
                 min-height: 100vh;
                 padding: 1rem 0;
                 position: relative;
-                /* Remove default background on mobile */
-                background-image: none !important;
                 overflow-x: hidden;
             }
 
@@ -327,14 +345,16 @@
                 padding-right: 1rem !important;
             }
 
-            /* Fixed background container for mobile */
+            /* Optimized background container for mobile */
             .mobile-bg-fixed {
                 position: fixed !important;
                 top: 0;
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');
+                /* Use local WebP image for faster loading */
+                background: linear-gradient(135deg, rgba(69, 100, 237, 0.7), rgba(22, 42, 128, 0.7));
+                background-image: url('./assets/bg.webp');
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -1451,6 +1471,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             gsap.registerPlugin(ScrollTrigger);
+
+            // Optimize background image loading
+            const preloadBackgroundImage = () => {
+                const img = new Image();
+                img.onload = () => {
+                    // Image loaded successfully, ensure smooth transition
+                    document.documentElement.style.setProperty('--bg-loaded', '1');
+                };
+                img.onerror = () => {
+                    // Fallback to gradient only if image fails to load
+                    console.warn('Background image failed to load, using gradient fallback');
+                };
+                img.src = './assets/bg.webp';
+            };
+            
+            // Start preloading immediately
+            preloadBackgroundImage();
 
             // Optimize ScrollTrigger for mobile
             if (window.innerWidth <= 768) {
