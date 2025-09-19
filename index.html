@@ -21,7 +21,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
             max-width: 100vw;
         }
@@ -128,6 +129,7 @@
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+
         .fade-in-up.visible {
             opacity: 1;
             transform: translateY(0);
@@ -149,6 +151,7 @@
 
         /* Enhanced Mobile Optimizations */
         @media (max-width: 480px) {
+
             /* Extra small mobile devices */
             .container {
                 padding-left: 0.75rem !important;
@@ -273,8 +276,10 @@
         }
 
         @media (max-width: 768px) {
+
             /* Prevent horizontal overflow on all mobile devices */
-            html, body {
+            html,
+            body {
                 overflow-x: hidden !important;
                 max-width: 100vw !important;
             }
@@ -335,15 +340,126 @@
                 overflow-x: hidden;
             }
 
-            /* Better mobile navigation */
+            /* Enhanced Mobile Menu */
             #mobile-menu {
-                backdrop-filter: blur(10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.4s ease, visibility 0.4s ease;
             }
 
-            #mobile-menu nav a {
-                padding: 0.75rem 0;
-                display: block;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            #mobile-menu.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            #mobile-menu .mobile-nav-link {
+                transform: translateX(-30px);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            #mobile-menu.show .mobile-nav-link {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            #mobile-menu.show .mobile-nav-link:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            #mobile-menu.show .mobile-nav-link:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            #mobile-menu.show .mobile-nav-link:nth-child(3) {
+                transition-delay: 0.3s;
+            }
+
+            #mobile-menu.show .mobile-nav-link:nth-child(4) {
+                transition-delay: 0.4s;
+            }
+
+            .mobile-cta-button {
+                transform: translateY(20px);
+                opacity: 0;
+                transition: all 0.4s ease;
+            }
+
+            #mobile-menu.show .mobile-cta-button {
+                transform: translateY(0);
+                opacity: 1;
+                transition-delay: 0.5s;
+            }
+
+            /* Hamburger menu button animation */
+            .hamburger-icon {
+                position: relative;
+            }
+
+            .hamburger-line {
+                transform-origin: center;
+            }
+
+            /* Hamburger to X animation */
+            #mobile-menu-button.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(2px, 2px);
+            }
+
+            #mobile-menu-button.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+
+            #mobile-menu-button.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(2px, -2px);
+            }
+
+            #mobile-menu-button:hover {
+                transform: scale(1.05);
+            }
+
+            /* Enhanced touch targets */
+            .mobile-nav-link {
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                border-radius: 12px;
+                margin: 4px 0;
+                padding: 0 16px;
+            }
+
+            .mobile-nav-link::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 0;
+                height: 100%;
+                background: linear-gradient(90deg, rgba(255, 127, 62, 0.15), rgba(255, 127, 62, 0.08));
+                transition: width 0.3s ease;
+                z-index: -1;
+                border-radius: 12px;
+            }
+
+            .mobile-nav-link:hover::before,
+            .mobile-nav-link:active::before {
+                width: 100%;
+            }
+
+            .mobile-nav-link:active {
+                transform: scale(0.98);
+            }
+
+            /* CTA button enhancements */
+            .mobile-cta-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 20px 40px rgba(255, 127, 62, 0.3);
+            }
+
+            .mobile-cta-button:active {
+                transform: translateY(0);
             }
 
             /* Improved form spacing on mobile */
@@ -382,7 +498,8 @@
             }
 
             /* Mobile-friendly buttons */
-            button, .btn {
+            button,
+            .btn {
                 min-height: 44px;
                 padding: 0.75rem 1.5rem;
                 max-width: 100%;
@@ -406,7 +523,13 @@
             }
 
             /* Ensure proper text wrapping */
-            h1, h2, h3, h4, h5, h6, p {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
                 word-wrap: break-word;
                 hyphens: auto;
                 overflow-wrap: break-word;
@@ -522,8 +645,13 @@
             opacity: 1;
         }
 
-        .testimonial-dot { transition: background-color 0.3s ease; }
-        .testimonial-dot.active { background-color: #FF7F3E; }
+        .testimonial-dot {
+            transition: background-color 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background-color: #FF7F3E;
+        }
 
         .form-input,
         .form-select,
@@ -565,7 +693,7 @@
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Glass effect for header over hero only */
@@ -651,8 +779,9 @@
 
         /* Enhanced touch targets for mobile */
         @media (max-width: 768px) {
-            button, 
-            .btn, 
+
+            button,
+            .btn,
             a[role="button"],
             input[type="submit"] {
                 min-height: 44px;
@@ -710,7 +839,7 @@
     <!-- <div id="preloader" class="fixed inset-0 bg-gradient-preloader z-[100] flex items-center justify-center">
         <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-20">
     </div> -->
- <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
             <div class="flex justify-between items-center">
                 <a href="#hero" class="flex-shrink-0">
@@ -731,30 +860,88 @@
                         Schedule a Consultation
                     </a>
                     <button id="mobile-menu-button"
-                        class="lg:hidden text-white text-2xl sm:text-3xl ml-2 sm:ml-4 focus:outline-none p-2">
-                        &#9776;
+                        class="lg:hidden text-white ml-2 sm:ml-4 focus:outline-none p-2 rounded-lg hover:bg-white/10 transition-all duration-300">
+                        <div class="hamburger-icon w-6 h-6 sm:w-7 sm:h-7 flex flex-col justify-center items-center">
+                            <span
+                                class="hamburger-line block w-full h-0.5 bg-current transition-all duration-300 mb-1"></span>
+                            <span
+                                class="hamburger-line block w-full h-0.5 bg-current transition-all duration-300 mb-1"></span>
+                            <span
+                                class="hamburger-line block w-full h-0.5 bg-current transition-all duration-300"></span>
+                        </div>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-50 p-6 sm:p-8 lg:hidden">
-        <div class="flex justify-end">
-            <button id="close-mobile-menu" class="text-white text-3xl sm:text-4xl focus:outline-none p-2">
-                &times;
-            </button>
+    <div id="mobile-menu" class="hidden fixed inset-0 z-50 lg:hidden">
+        <!-- Backdrop with blur effect -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/90 to-slate-800/95 backdrop-blur-xl">
         </div>
-        <nav class="flex flex-col items-center justify-center h-full space-y-6 sm:space-y-8">
-            <a href="#services" class="nav-link text-white text-xl sm:text-2xl font-medium">Services</a>
-            <a href="#about" class="nav-link text-white text-xl sm:text-2xl font-medium">About</a>
-            <a href="#products" class="nav-link text-white text-xl sm:text-2xl font-medium">Products</a>
-            <a href="#insights" class="nav-link text-white text-xl sm:text-2xl font-medium">Insights</a>
-            <a href="#contact"
-                class="mt-6 sm:mt-8 bg-transparent text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg transition-all duration-300 border-2 border-white hover:bg-white hover:text-blue-900 text-base sm:text-lg">
-                Schedule a Consultation
-            </a>
-        </nav>
+
+        <!-- Menu container -->
+        <div class="relative h-full flex flex-col">
+            <!-- Header with close button -->
+            <div class="flex justify-between items-center p-6 sm:p-8">
+                <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-8 sm:h-10">
+                <button id="close-mobile-menu"
+                    class="text-white hover:text-accent transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 flex flex-col justify-center px-6 sm:px-8">
+                <div class="space-y-2">
+                    <a href="#services"
+                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
+                        <span
+                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        Services
+                    </a>
+                    <a href="#about"
+                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
+                        <span
+                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        About
+                    </a>
+                    <a href="#products"
+                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
+                        <span
+                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        Products
+                    </a>
+                    <a href="#insights"
+                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
+                        <span
+                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        Insights
+                    </a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="mt-12 sm:mt-16">
+                    <a href="#contact"
+                        class="mobile-cta-button block w-full text-center bg-gradient-to-r from-accent to-orange-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-accent/25 hover:scale-105 text-lg sm:text-xl">
+                        Schedule a Consultation
+                        <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Footer -->
+            <div class="p-6 sm:p-8 text-center">
+                <p class="text-white/60 text-sm">© 2024 Vishnorex. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -784,7 +971,9 @@
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">Our Core
                         Capabilities</h2>
                     <p class="text-base sm:text-lg text-slate-500 max-w-3xl mx-auto fade-in-up px-4">
-                        We empower businesses and higher education institutions with cutting-edge, AI-driven solutions. By harnessing automation and data-driven insights, we deliver end-to-end technology services designed to solve complex challenges and create lasting value.
+                        We empower businesses and higher education institutions with cutting-edge, AI-driven solutions.
+                        By harnessing automation and data-driven insights, we deliver end-to-end technology services
+                        designed to solve complex challenges and create lasting value.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
@@ -792,43 +981,62 @@
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-red-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-red-500">
                             &#60;/&#62;</div>
-                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Web Development & Design</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We design and build high-performance, scalable, and secure web solutions, from sleek corporate websites to complex e-commerce platforms and SaaS products, ensuring fast load times and intuitive UX/UI.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Web Development &
+                            Design</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We design and build
+                            high-performance, scalable, and secure web solutions, from sleek corporate websites to
+                            complex e-commerce platforms and SaaS products, ensuring fast load times and intuitive
+                            UX/UI.</p>
                     </div>
-                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-purple-500">
                             💡</div>
-                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">AI & Smart Automation</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Leveraging AI to unlock predictive insights and automate processes. Our services include AI Chatbots for 24/7 support and Smart Automation to boost efficiency, reduce errors, and lower operational costs.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">AI & Smart
+                            Automation</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Leveraging AI to unlock
+                            predictive insights and automate processes. Our services include AI Chatbots for 24/7
+                            support and Smart Automation to boost efficiency, reduce errors, and lower operational
+                            costs.</p>
                     </div>
-                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
+                    <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-blue-500">
                             ☁️</div>
                         <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Cloud & DevOps</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Architecting scalable, resilient, and cost-efficient cloud-native infrastructures with automated CI/CD pipelines for rapid and reliable innovation.</p>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Architecting scalable, resilient,
+                            and cost-efficient cloud-native infrastructures with automated CI/CD pipelines for rapid and
+                            reliable innovation.</p>
                     </div>
                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-green-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-green-500">
                             🛡️</div>
                         <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Cybersecurity</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Implementing robust security protocols and proactive threat intelligence to protect your most critical digital assets and ensure data safety.</p>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Implementing robust security
+                            protocols and proactive threat intelligence to protect your most critical digital assets and
+                            ensure data safety.</p>
                     </div>
                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-yellow-500">
                             📊</div>
-                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Data & Analytics</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Transforming raw data into actionable business intelligence. We build predictive analytics platforms that provide instant insights for quick decision-making.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Data & Analytics
+                        </h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">Transforming raw data into
+                            actionable business intelligence. We build predictive analytics platforms that provide
+                            instant insights for quick decision-making.</p>
                     </div>
                     <div class="service-card bg-white p-4 sm:p-6 lg:p-8 rounded-2xl shadow-sm fade-in-up">
                         <div
                             class="icon-container w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mb-3 sm:mb-4 lg:mb-6 rounded-xl bg-accent bg-opacity-20 flex items-center justify-center text-xl sm:text-2xl lg:text-3xl text-accent">
                             🤝</div>
-                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Higher Education Management</h3>
-                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We deliver end-to-end higher education management through innovative software, streamlining administration, enhancing learning experiences, and driving institutional growth from admissions to alumni engagement.</p>
+                        <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3">Higher Education
+                            Management</h3>
+                        <p class="text-slate-500 text-sm sm:text-base leading-relaxed">We deliver end-to-end higher
+                            education management through innovative software, streamlining administration, enhancing
+                            learning experiences, and driving institutional growth from admissions to alumni engagement.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -844,25 +1052,32 @@
                             style="height:auto; max-height:400px; object-fit:cover;">
                     </div>
                     <div class="fade-in-up order-1 lg:order-2 text-center lg:text-left">
-                        <h2 class="font-h text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0">We are your
+                        <h2
+                            class="font-h text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0">
+                            We are your
                             strategic technology partner.</h2>
-                        <p class="text-sm sm:text-base lg:text-lg text-slate-500 mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0 leading-relaxed">Vishnorex was founded on a
+                        <p
+                            class="text-sm sm:text-base lg:text-lg text-slate-500 mb-4 sm:mb-6 px-2 sm:px-4 lg:px-0 leading-relaxed">
+                            Vishnorex was founded on a
                             simple principle: technology should be a catalyst for growth, not a constraint. We are a
                             collective of expert engineers, visionary strategists, and creative problem-solvers
                             dedicated to co-creating success with our clients. Our culture is built on a foundation of
                             deep collaboration, radical transparency, and a relentless pursuit of excellence.</p>
-                        <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-0">
+                        <div
+                            class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-4 lg:px-0">
                             <div class="p-4">
-                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent" id="value-counter-1">10+
+                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent"
+                                    id="value-counter-1">10+
                                 </div>
                                 <p class="text-slate-500 mt-2 text-xs sm:text-sm lg:text-base">Successful Projects</p>
                             </div>
                             <div class="p-4">
-                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent" id="value-counter-2">98%
+                                <div class="font-h text-3xl sm:text-4xl lg:text-5xl font-bold text-accent"
+                                    id="value-counter-2">98%
                                 </div>
                                 <p class="text-slate-500 mt-2 text-xs sm:text-sm lg:text-base">Client Satisfaction</p>
                             </div>
-                             <!-- <div>
+                            <!-- <div>
                                 <div class="font-h text-4xl sm:text-5xl font-bold text-accent" id="value-counter-3">20+
                                 </div>
                                 <p class="text-slate-500 mt-2 text-sm sm:text-base">Employees</p>
@@ -877,28 +1092,43 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="text-center mb-12 sm:mb-16">
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">Our Products</h2>
-                    <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto fade-in-up px-4">We develop tailored software products that meet the evolving needs of modern businesses and educational institutions.</p>
+                    <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto fade-in-up px-4">We develop tailored
+                        software products that meet the evolving needs of modern businesses and educational
+                        institutions.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction Site Management" class="w-full h-48 sm:h-56 object-cover">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Construction Site Management" class="w-full h-48 sm:h-56 object-cover">
                         <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Construction Site Management</h3>
-                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">An all-in-one browser extension for smarter jobsite management. Monitor progress, collaborate with your team, and track resources without leaving your browser.</p>
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Construction Site
+                                Management</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">An
+                                all-in-one browser extension for smarter jobsite management. Monitor progress,
+                                collaborate with your team, and track resources without leaving your browser.</p>
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full">
-                        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Library Management System" class="w-full h-48 sm:h-56 object-cover">
-                         <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Library Management System</h3>
-                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">Transform your library into a modern, automated hub. Designed for schools and universities to simplify book tracking, member management, and administrative tasks.</p>
+                        <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Library Management System" class="w-full h-48 sm:h-56 object-cover">
+                        <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Library Management
+                                System</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">
+                                Transform your library into a modern, automated hub. Designed for schools and
+                                universities to simplify book tracking, member management, and administrative tasks.</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full md:col-span-2 lg:col-span-1">
-                         <img src="https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Staff Management System" class="w-full h-48 sm:h-56 object-cover">
-                         <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
-                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Staff Management System</h3>
-                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">Streamline your workforce, boost productivity, and simplify HR operations. Our system automates workforce management for businesses of all sizes.</p>
+                    <div
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col h-full md:col-span-2 lg:col-span-1">
+                        <img src="https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Staff Management System" class="w-full h-48 sm:h-56 object-cover">
+                        <div class="p-4 sm:p-6 lg:p-8 flex flex-col flex-grow">
+                            <h3 class="font-h text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Staff Management
+                                System</h3>
+                            <p class="text-slate-500 text-sm sm:text-base mb-4 sm:mb-6 flex-grow leading-relaxed">
+                                Streamline your workforce, boost productivity, and simplify HR operations. Our system
+                                automates workforce management for businesses of all sizes.</p>
                         </div>
                     </div>
                 </div>
@@ -909,32 +1139,36 @@
             <div class="container mx-auto px-4 sm:px-6">
                 <div class="text-center mb-12">
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Our Valued Clients</h2>
-                    <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">We are proud to partner with a diverse range of clients.</p>
+                    <p class="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto">We are proud to partner with a
+                        diverse range of clients.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 text-center">
                     <div class="p-4 sm:p-6 flex flex-col items-center">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xs font-bold text-center leading-tight px-1">
+                        <div
+                            class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xs font-bold text-center leading-tight px-1">
                             EXCEL<br>GROUP
                         </div>
                         <p class="text-lg sm:text-xl font-semibold text-slate-700">Excel Group Institutions</p>
                     </div>
                     <div class="p-4 sm:p-6 flex flex-col items-center">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
+                        <div
+                            class="w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 rounded-lg shadow-sm bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
                             SRK
                         </div>
                         <p class="text-xl font-semibold text-slate-700">SRK Matric School</p>
                     </div>
                     <div class="p-4 flex flex-col items-center">
-                        <div class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white text-2xl">
+                        <div
+                            class="w-16 h-16 mb-4 rounded-lg shadow-sm bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white text-2xl">
                             🏗️
                         </div>
                         <p class="text-xl font-semibold text-slate-700">Acura Constructions</p>
                     </div>
                 </div>
             </div>
-        </section>     
+        </section>
         <section id="insights" class="py-16 sm:py-20 md:py-32">
-             <div class="container mx-auto px-4 sm:px-6">
+            <div class="container mx-auto px-4 sm:px-6">
                 <div class="text-center mb-12 sm:mb-16">
                     <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">From Our Insights
                         Hub</h2>
@@ -978,73 +1212,80 @@
             </div>
         </section>
 
-       <section id="contact" class="bg-blue-50 text-gray-800 py-16 sm:py-20 md:py-32">
-     <div class="container mx-auto px-4 sm:px-6">
-       <div class="text-center mb-12">
-         <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">
-           Let's Build Together
-         </h2>
-         <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto fade-in-up px-4">
-           Have a project in mind or just want to learn more? We'd love to hear from you. Reach out at <a href="mailto:vishnorextech@gmail.com" class="font-semibold underline hover:text-accent">vishnorextech@gmail.com</a> or fill out the form below.
-         </p>
-       </div>
+        <section id="contact" class="bg-blue-50 text-gray-800 py-16 sm:py-20 md:py-32">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-h text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up px-4">
+                        Let's Build Together
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto fade-in-up px-4">
+                        Have a project in mind or just want to learn more? We'd love to hear from you. Reach out at <a
+                            href="mailto:vishnorextech@gmail.com"
+                            class="font-semibold underline hover:text-accent">vishnorextech@gmail.com</a> or fill out
+                        the form below.
+                    </p>
+                </div>
 
-       <!-- Form now uses Formspree for submission -->
+                <!-- Form now uses Formspree for submission -->
 
-       <div class="max-w-4xl mx-auto fade-in-up px-4 sm:px-6">
-         <form id="contact-form" action="https://formspree.io/f/movlrady" method="POST">
-           <input type="hidden" name="form-name" value="newsletter" />
+                <div class="max-w-4xl mx-auto fade-in-up px-4 sm:px-6">
+                    <form id="contact-form" action="https://formspree.io/f/movlrady" method="POST">
+                        <input type="hidden" name="form-name" value="newsletter" />
 
-           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-             <div>
-               <label for="full-name" class="block text-sm font-medium mb-2">Full Name</label>
-               <input type="text" id="full-name" name="name" required
-                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
-             </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                            <div>
+                                <label for="full-name" class="block text-sm font-medium mb-2">Full Name</label>
+                                <input type="text" id="full-name" name="name" required
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
+                                    placeholder="">
+                            </div>
 
-             <div>
-               <label for="company-name" class="block text-sm font-medium mb-2">Company Name</label>
-               <input type="text" id="company-name" name="company"
-                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
-             </div>
+                            <div>
+                                <label for="company-name" class="block text-sm font-medium mb-2">Company Name</label>
+                                <input type="text" id="company-name" name="company"
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
+                                    placeholder="">
+                            </div>
 
-             <div>
-               <label for="work-email" class="block text-sm font-medium mb-2">Work Email</label>
-               <input type="email" id="work-email" name="email" required
-                 class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base" placeholder="">
-             </div>
+                            <div>
+                                <label for="work-email" class="block text-sm font-medium mb-2">Work Email</label>
+                                <input type="email" id="work-email" name="email" required
+                                    class="form-input w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
+                                    placeholder="">
+                            </div>
 
-             <div>
-               <label for="interest" class="block text-sm font-medium mb-2">How can we help?</label>
-               <select id="interest" name="interest" required class="form-select w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
-                 <option value="">Select a service...</option>
-                 <option>Web Development & Design</option>
-                 <option>AI & Smart Automation</option>
-                 <option>Cloud & DevOps</option>
-                 <option>Cybersecurity</option>
-                 <option>Data & Analytics</option>
-                 <option>Other</option>
-               </select>
-             </div>
-           </div>
+                            <div>
+                                <label for="interest" class="block text-sm font-medium mb-2">How can we help?</label>
+                                <select id="interest" name="interest" required
+                                    class="form-select w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base">
+                                    <option value="">Select a service...</option>
+                                    <option>Web Development & Design</option>
+                                    <option>AI & Smart Automation</option>
+                                    <option>Cloud & DevOps</option>
+                                    <option>Cybersecurity</option>
+                                    <option>Data & Analytics</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
 
-           <div class="mt-4 sm:mt-6">
-             <label for="message" class="block text-sm font-medium mb-2">Message</label>
-             <textarea id="message" name="message" rows="5" required
-               class="form-textarea w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
-               placeholder="Tell us about your project or inquiry..."></textarea>
-           </div>
+                        <div class="mt-4 sm:mt-6">
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="form-textarea w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm sm:text-base"
+                                placeholder="Tell us about your project or inquiry..."></textarea>
+                        </div>
 
-           <div class="mt-6 sm:mt-8 text-center">
-             <button type="submit"
-               class="bg-accent text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-lg shadow-lg text-base sm:text-lg inline-block transform hover:scale-105 transition-all duration-300 w-full sm:w-auto">
-               Send Message
-             </button>
-           </div>
-         </form>
-       </div>
-     </div>
-   </section>
+                        <div class="mt-6 sm:mt-8 text-center">
+                            <button type="submit"
+                                class="bg-accent text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-lg shadow-lg text-base sm:text-lg inline-block transform hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -1053,28 +1294,36 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-12">
                 <div class="sm:col-span-3 lg:col-span-1 text-center sm:text-left">
                     <img src="./assets/whitebg.png" alt="Vishnorex Logo" class="h-10 sm:h-12 mb-4 mx-auto sm:mx-0">
-                    <p class="text-sm sm:text-base max-w-xs mx-auto sm:mx-0 text-gray-200">Transforming ideas into high-impact software.</p>
+                    <p class="text-sm sm:text-base max-w-xs mx-auto sm:mx-0 text-gray-200">Transforming ideas into
+                        high-impact software.</p>
                 </div>
 
                 <div class="text-center sm:text-left">
                     <h4 class="font-h text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Quick Links</h4>
                     <ul class="space-y-2 sm:space-y-3">
                         <li><a href="#services"
-                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Services</a></li>
-                        <li><a href="#about" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">About
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Services</a>
+                        </li>
+                        <li><a href="#about"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">About
                                 Us</a></li>
-                        <li><a href="#products" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Products</a></li>
+                        <li><a href="#products"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Products</a>
+                        </li>
                         <li><a href="#insights"
-                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Insights</a></li>
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Insights</a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="text-center sm:text-left">
                     <h4 class="font-h text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Legal</h4>
                     <ul class="space-y-2 sm:space-y-3">
-                        <li><a href="#" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Privacy
+                        <li><a href="#"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Privacy
                                 Policy</a></li>
-                        <li><a href="#" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Terms of
+                        <li><a href="#"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Terms of
                                 Service</a></li>
                         <!-- <li><a href="#" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Cookie
                                 Policy</a></li> -->
@@ -1084,355 +1333,377 @@
                 <div class="text-center sm:text-left">
                     <h4 class="font-h text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">Connect</h4>
                     <ul class="space-y-2 sm:space-y-3">
-                         <li><a href="mailto:vishnorextech@gmail.com" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Email</a>
+                        <li><a href="mailto:vishnorextech@gmail.com"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Email</a>
                         </li>
-                        <li><a href="#" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">LinkedIn</a>
+                        <li><a href="#"
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">LinkedIn</a>
                         </li>
                         <li><a href="https://www.instagram.com/vishnorexzone/"
-                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Instagram</a></li>
+                                class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Instagram</a>
+                        </li>
                         <!-- <li><a href="#" class="text-sm sm:text-base text-gray-200 hover:text-accent transition-colors">Twitter</a></li> -->
                     </ul>
                 </div>
             </div>
 
             <div class="mt-8 sm:mt-12 border-t border-gray-300 pt-6 sm:pt-8 text-center">
-                <p class="text-xs sm:text-sm text-gray-200">&copy; 2025 Vishnorex Technologies Pvt. Ltd. All Rights Reserved.</p>
+                <p class="text-xs sm:text-sm text-gray-200">&copy; 2025 Vishnorex Technologies Pvt. Ltd. All Rights
+                    Reserved.</p>
             </div>
         </div>
     </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    gsap.registerPlugin(ScrollTrigger);
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            gsap.registerPlugin(ScrollTrigger);
 
-    // Navbar scroll effect
-    const header = document.getElementById('main-header');
-    const logoWhite = document.querySelector('.logo-white');
-    const logoColor = document.querySelector('.logo-color');
+            // Navbar scroll effect
+            const header = document.getElementById('main-header');
+            const logoWhite = document.querySelector('.logo-white');
+            const logoColor = document.querySelector('.logo-color');
 
-    function updateHeader() {
-        const hero = document.getElementById('hero');
-        const threshold = hero ? hero.offsetHeight : 0;
-        const overHero = window.scrollY <= threshold;
-        if (!overHero) {
-            header.classList.add('header-scrolled');
-            header.classList.add('header-glass');
-            logoWhite.classList.add('hidden');
-            logoColor.classList.remove('hidden');
-        } else {
-            header.classList.remove('header-scrolled');
-            header.classList.remove('header-glass');
-            logoWhite.classList.remove('hidden');
-            logoColor.classList.add('hidden');
-        }
-    }
-
-    window.addEventListener('scroll', updateHeader);
-    // Run once on load in case the page opens scrolled past hero
-    updateHeader();
-
-    // Mobile menu functionality
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeMobileMenu = document.getElementById('close-mobile-menu');
-
-    // Open mobile menu
-    if (mobileMenuButton) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-    }
-
-    // Close mobile menu
-    if (closeMobileMenu) {
-        closeMobileMenu.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        });
-    }
-
-    // Close mobile menu when clicking on a nav link
-    const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
-    if (mobileMenuLinks) {
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Restore scrolling
-            });
-        });
-    }
-
-    // Close mobile menu when clicking outside of it
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', function(e) {
-            if (e.target === mobileMenu) {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Restore scrolling
+            function updateHeader() {
+                const hero = document.getElementById('hero');
+                const threshold = hero ? hero.offsetHeight : 0;
+                const overHero = window.scrollY <= threshold;
+                if (!overHero) {
+                    header.classList.add('header-scrolled');
+                    header.classList.add('header-glass');
+                    logoWhite.classList.add('hidden');
+                    logoColor.classList.remove('hidden');
+                } else {
+                    header.classList.remove('header-scrolled');
+                    header.classList.remove('header-glass');
+                    logoWhite.classList.remove('hidden');
+                    logoColor.classList.add('hidden');
+                }
             }
-        });
-    }
 
-    // Fade-in-up animations on scroll
-    const fadeElements = document.querySelectorAll('.fade-in-up');
+            window.addEventListener('scroll', updateHeader);
+            // Run once on load in case the page opens scrolled past hero
+            updateHeader();
 
-    function checkFadeElements() {
-        fadeElements.forEach(element => {
-            const rect = element.getBoundingClientRect();
-            const elementTop = rect.top;
-            const elementBottom = rect.bottom;
-            const windowHeight = window.innerHeight;
+            // Enhanced Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.getElementById('close-mobile-menu');
 
-            // Trigger animation when element is 20% visible from bottom
-            if (elementTop < windowHeight * 0.8 && elementBottom > 0) {
-                element.classList.add('visible');
+            function openMobileMenu() {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuButton.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                // Trigger animation after a small delay to ensure element is visible
+                setTimeout(() => {
+                    mobileMenu.classList.add('show');
+                }, 10);
             }
-        });
-    }
 
-    // Check on page load  
-    checkFadeElements();
+            function closeMobileMenuFunc() {
+                mobileMenu.classList.remove('show');
+                mobileMenuButton.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                // Hide element after animation completes
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 400);
+            }
 
-    // Check on scroll
-    window.addEventListener('scroll', checkFadeElements);
+            // Open mobile menu
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', openMobileMenu);
+            }
 
-    // === CINEMATIC ANIMATIONS ===
+            // Close mobile menu
+            if (closeMobileMenu) {
+                closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+            }
 
-    // Hero Section: Cinematic Entrance
-    const heroTimeline = gsap.timeline();
-    heroTimeline
-        .fromTo("#hero h1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
-        .fromTo("#hero p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
-        .fromTo("#hero a[href='#services']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
-
-    // Section Headers: 3D Unfold Effect
-    const sectionHeaders = document.querySelectorAll("section h2, section h3");
-    sectionHeaders.forEach(header => {
-        gsap.set(header, { opacity: 0, y: 30, rotationX: -90 });
-        ScrollTrigger.create({
-            trigger: header,
-            start: "top 80%",
-            onEnter: () => {
-                gsap.to(header, {
-                    opacity: 1,
-                    y: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "back.out(1.7)"
+            // Close mobile menu when clicking on a nav link
+            const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
+            if (mobileMenuLinks) {
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenuFunc);
                 });
             }
-        });
-    });
 
-    // Service Cards: Elastic Pop-In
-    const serviceCards = document.querySelectorAll(".service-card");
-    serviceCards.forEach((card, index) => {
-        gsap.set(card, { opacity: 0, scale: 0.8, y: 50 });
-        ScrollTrigger.create({
-            trigger: card,
-            start: "top 85%",
-            onEnter: () => {
-                gsap.to(card, {
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: "elastic.out(1, 0.5)"
-                });
-            }
-        });
-    });
-
-    // About Us Image: Parallax Zoom
-    const aboutImage = document.querySelector("#about img");
-    if (aboutImage) {
-        gsap.set(aboutImage, { opacity: 0, scale: 0.8 });
-        ScrollTrigger.create({
-            trigger: aboutImage,
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: 1,
-            onEnter: () => {
-                gsap.to(aboutImage, {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1,
-                    ease: "power2.out"
-                });
-            },
-            onLeave: () => {
-                gsap.to(aboutImage, {
-                    scale: 1.1,
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
-            },
-            onEnterBack: () => {
-                gsap.to(aboutImage, {
-                    scale: 1,
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
-            }
-        });
-    }
-
-    // About Us Counters: Number Roll-Up Animation
-    const counters = document.querySelectorAll("#value-counter-1, #value-counter-2");
-    counters.forEach(counter => {
-        const originalText = counter.textContent.trim();
-        const hasPlus = originalText.includes('+');
-        const hasPercent = originalText.includes('%');
-        const targetValue = parseInt(originalText.replace(/[+%]/g, ''));
-
-        gsap.set(counter, { textContent: "0" });
-
-        ScrollTrigger.create({
-            trigger: counter,
-            start: "top 80%",
-            onEnter: () => {
-                gsap.to(counter, {
-                    duration: 2,
-                    textContent: targetValue,
-                    ease: "power2.out",
-                    snap: { textContent: 1 },
-                    onUpdate: function() {
-                        const currentValue = Math.round(this.targets()[0].textContent);
-                        if (hasPlus) {
-                            this.targets()[0].textContent = currentValue + "+";
-                        } else if (hasPercent) {
-                            this.targets()[0].textContent = currentValue + "%";
-                        } else {
-                            this.targets()[0].textContent = currentValue;
-                        }
+            // Close mobile menu when clicking on backdrop
+            if (mobileMenu) {
+                mobileMenu.addEventListener('click', function (e) {
+                    // Only close if clicking on the backdrop (the menu container itself)
+                    if (e.target === mobileMenu) {
+                        closeMobileMenuFunc();
                     }
                 });
             }
-        });
-    });
 
-    // Product & Insight Cards: Slide-In From Side
-    const productCards = document.querySelectorAll("#products .bg-white, #insights .insight-card");
-    productCards.forEach((card, index) => {
-        const direction = index % 2 === 0 ? -50 : 50; // Alternate left/right
-        gsap.set(card, { opacity: 0, x: direction });
+            // Close mobile menu with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
+                    closeMobileMenuFunc();
+                }
+            });
 
-        ScrollTrigger.create({
-            trigger: card,
-            start: "top 85%",
-            onEnter: () => {
-                gsap.to(card, {
-                    opacity: 1,
-                    x: 0,
-                    duration: 0.8,
-                    delay: (index % 3) * 0.1,
-                    ease: "power2.out"
+            // Fade-in-up animations on scroll
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+
+            function checkFadeElements() {
+                fadeElements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.top;
+                    const elementBottom = rect.bottom;
+                    const windowHeight = window.innerHeight;
+
+                    // Trigger animation when element is 20% visible from bottom
+                    if (elementTop < windowHeight * 0.8 && elementBottom > 0) {
+                        element.classList.add('visible');
+                    }
                 });
             }
-        });
-    });
+
+            // Check on page load  
+            checkFadeElements();
+
+            // Check on scroll
+            window.addEventListener('scroll', checkFadeElements);
+
+            // === CINEMATIC ANIMATIONS ===
+
+            // Hero Section: Cinematic Entrance
+            const heroTimeline = gsap.timeline();
+            heroTimeline
+                .fromTo("#hero h1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" })
+                .fromTo("#hero p", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, "-=0.5")
+                .fromTo("#hero a[href='#services']", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.3");
+
+            // Section Headers: 3D Unfold Effect
+            const sectionHeaders = document.querySelectorAll("section h2, section h3");
+            sectionHeaders.forEach(header => {
+                gsap.set(header, { opacity: 0, y: 30, rotationX: -90 });
+                ScrollTrigger.create({
+                    trigger: header,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(header, {
+                            opacity: 1,
+                            y: 0,
+                            rotationX: 0,
+                            duration: 0.8,
+                            ease: "back.out(1.7)"
+                        });
+                    }
+                });
+            });
+
+            // Service Cards: Elastic Pop-In
+            const serviceCards = document.querySelectorAll(".service-card");
+            serviceCards.forEach((card, index) => {
+                gsap.set(card, { opacity: 0, scale: 0.8, y: 50 });
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            opacity: 1,
+                            scale: 1,
+                            y: 0,
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: "elastic.out(1, 0.5)"
+                        });
+                    }
+                });
+            });
+
+            // About Us Image: Parallax Zoom
+            const aboutImage = document.querySelector("#about img");
+            if (aboutImage) {
+                gsap.set(aboutImage, { opacity: 0, scale: 0.8 });
+                ScrollTrigger.create({
+                    trigger: aboutImage,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: 1,
+                    onEnter: () => {
+                        gsap.to(aboutImage, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 1,
+                            ease: "power2.out"
+                        });
+                    },
+                    onLeave: () => {
+                        gsap.to(aboutImage, {
+                            scale: 1.1,
+                            duration: 0.5,
+                            ease: "power2.out"
+                        });
+                    },
+                    onEnterBack: () => {
+                        gsap.to(aboutImage, {
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            }
+
+            // About Us Counters: Number Roll-Up Animation
+            const counters = document.querySelectorAll("#value-counter-1, #value-counter-2");
+            counters.forEach(counter => {
+                const originalText = counter.textContent.trim();
+                const hasPlus = originalText.includes('+');
+                const hasPercent = originalText.includes('%');
+                const targetValue = parseInt(originalText.replace(/[+%]/g, ''));
+
+                gsap.set(counter, { textContent: "0" });
+
+                ScrollTrigger.create({
+                    trigger: counter,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(counter, {
+                            duration: 2,
+                            textContent: targetValue,
+                            ease: "power2.out",
+                            snap: { textContent: 1 },
+                            onUpdate: function () {
+                                const currentValue = Math.round(this.targets()[0].textContent);
+                                if (hasPlus) {
+                                    this.targets()[0].textContent = currentValue + "+";
+                                } else if (hasPercent) {
+                                    this.targets()[0].textContent = currentValue + "%";
+                                } else {
+                                    this.targets()[0].textContent = currentValue;
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Product & Insight Cards: Slide-In From Side
+            const productCards = document.querySelectorAll("#products .bg-white, #insights .insight-card");
+            productCards.forEach((card, index) => {
+                const direction = index % 2 === 0 ? -50 : 50; // Alternate left/right
+                gsap.set(card, { opacity: 0, x: direction });
+
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            opacity: 1,
+                            x: 0,
+                            duration: 0.8,
+                            delay: (index % 3) * 0.1,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
 
 
 
-   /* setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-    }, 5000); */
+            /* setInterval(() => {
+                 currentIndex = (currentIndex + 1) % slides.length;
+                 showSlide(currentIndex);
+             }, 5000); */
 
-    // Contact form submission using Formspree AJAX
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
+            // Contact form submission using Formspree AJAX
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalButtonText = submitButton.textContent;
 
-            submitButton.disabled = true;
-            submitButton.innerHTML = `
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 Sending...`;
 
-            const formData = new FormData(contactForm);
-            
-            try {
-                // Submit the form data to Formspree using fetch API
-                const response = await fetch('https://formspree.io/f/movlrady', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+                    const formData = new FormData(contactForm);
+
+                    try {
+                        // Submit the form data to Formspree using fetch API
+                        const response = await fetch('https://formspree.io/f/movlrady', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            showNotification('🎉 Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
+                            contactForm.reset();
+                        } else {
+                            throw new Error(result.error || 'Something went wrong');
+                        }
+                    } catch (error) {
+                        console.error('❌ Form submission error:', error);
+                        showNotification('❌ Sorry, there was an error sending your message. Please try again.', 'error');
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText;
                     }
                 });
-                
-                const result = await response.json();
-                
-                if (response.ok) {
-                    showNotification('🎉 Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
-                    contactForm.reset();
+            }
+
+            function showNotification(message, type = 'info', duration = 6000) {
+                const existingNotifications = document.querySelectorAll('.notification');
+                existingNotifications.forEach(notification => notification.remove());
+
+                const notification = document.createElement('div');
+                const isMobile = window.innerWidth < 768;
+                let baseClasses = `notification fixed z-[200] rounded-lg shadow-2xl p-4 transition-all duration-500 ease-in-out`;
+
+                if (isMobile) {
+                    baseClasses += ` top-4 left-4 right-4 translate-y-[-150%]`
                 } else {
-                    throw new Error(result.error || 'Something went wrong');
+                    baseClasses += ` top-4 right-4 max-w-md translate-x-[150%]`
                 }
-            } catch (error) {
-                console.error('❌ Form submission error:', error);
-                showNotification('❌ Sorry, there was an error sending your message. Please try again.', 'error');
-            } finally {
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
+
+                let typeClasses = '';
+                if (type === 'success') {
+                    typeClasses = 'bg-green-500 text-white';
+                } else if (type === 'error') {
+                    typeClasses = 'bg-red-500 text-white';
+                } else {
+                    typeClasses = 'bg-blue-500 text-white';
+                }
+                notification.className = `${baseClasses} ${typeClasses}`;
+                notification.innerHTML = `<p>${message}</p>`;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    if (isMobile) {
+                        notification.classList.remove('translate-y-[-150%]');
+                    } else {
+                        notification.classList.remove('translate-x-[150%]');
+                    }
+                }, 100);
+
+                setTimeout(() => {
+                    if (isMobile) {
+                        notification.style.transform = 'translateY(-150%)';
+                    } else {
+                        notification.style.transform = 'translateX(150%)';
+                    }
+                    setTimeout(() => notification.remove(), 500);
+                }, duration);
             }
         });
-    }
+    </script>
 
-    function showNotification(message, type = 'info', duration = 6000) {
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
 
-        const notification = document.createElement('div');
-        const isMobile = window.innerWidth < 768;
-        let baseClasses = `notification fixed z-[200] rounded-lg shadow-2xl p-4 transition-all duration-500 ease-in-out`;
-        
-        if (isMobile) {
-            baseClasses += ` top-4 left-4 right-4 translate-y-[-150%]`
-        } else {
-            baseClasses += ` top-4 right-4 max-w-md translate-x-[150%]`
-        }
-
-        let typeClasses = '';
-        if (type === 'success') {
-            typeClasses = 'bg-green-500 text-white';
-        } else if (type === 'error') {
-            typeClasses = 'bg-red-500 text-white';
-        } else {
-            typeClasses = 'bg-blue-500 text-white';
-        }
-        notification.className = `${baseClasses} ${typeClasses}`;
-        notification.innerHTML = `<p>${message}</p>`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            if (isMobile) {
-                notification.classList.remove('translate-y-[-150%]');
-            } else {
-                notification.classList.remove('translate-x-[150%]');
-            }
-        }, 100);
-
-        setTimeout(() => {
-            if (isMobile) {
-                notification.style.transform = 'translateY(-150%)';
-            } else {
-                notification.style.transform = 'translateX(150%)';
-            }
-            setTimeout(() => notification.remove(), 500);
-        }, duration);
-    }
-});
-</script>
-
-   
 </body>
 
 </html>
