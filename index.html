@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishnorex</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#FF7F3E',
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,10 +27,10 @@
 
     <!-- EmailJS for client-side email sending -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
+
     <!-- Preload critical background image for faster loading -->
     <link rel="preload" href="./assets/bg.webp" as="image" type="image/webp">
-    
+
     <style>
         * {
             box-sizing: border-box;
@@ -152,15 +163,12 @@
         }
 
         #hero {
-            /* Instant gradient fallback while image loads */
-            background: linear-gradient(135deg, rgba(69, 100, 237, 0.9), rgba(22, 42, 128, 0.9));
-            /* Optimized image loading */
-            background-image: url('./assets/bg.webp');
+            background-image: url('assets/bg.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Blend the image with gradient for better performance */
-            background-blend-mode: overlay;
+            background-repeat: no-repeat;
+            background-color: transparent;
         }
 
         #footer {
@@ -322,8 +330,8 @@
             #hero,
             #footer {
                 background-attachment: scroll !important;
-                /* Use gradient only on mobile for faster loading */
-                background-image: linear-gradient(135deg, rgba(69, 100, 237, 0.95), rgba(22, 42, 128, 0.95)) !important;
+                /* Use the same background image on mobile */
+                background-image: url('assets/bg.webp') !important;
             }
 
             .container {
@@ -352,9 +360,7 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                /* Use local WebP image for faster loading */
-                background: linear-gradient(135deg, rgba(69, 100, 237, 0.7), rgba(22, 42, 128, 0.7));
-                background-image: url('./assets/bg.webp');
+                background-image: url('assets/bg.webp');
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -382,55 +388,39 @@
                 overflow-x: hidden;
             }
 
-            /* Enhanced Mobile Menu */
+            /* Modern Mobile Menu */
             #mobile-menu {
-                opacity: 0;
                 visibility: hidden;
-                transition: opacity 0.4s ease, visibility 0.4s ease;
             }
 
             #mobile-menu.show {
-                opacity: 1;
                 visibility: visible;
-            }
-
-            #mobile-menu .mobile-nav-link {
-                transform: translateX(-30px);
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
-
-            #mobile-menu.show .mobile-nav-link {
                 transform: translateX(0);
-                opacity: 1;
             }
 
-            #mobile-menu.show .mobile-nav-link:nth-child(1) {
-                transition-delay: 0.1s;
+            .mobile-nav-item {
+                transition: all 0.2s ease;
+                min-height: 56px;
             }
 
-            #mobile-menu.show .mobile-nav-link:nth-child(2) {
-                transition-delay: 0.2s;
+            .mobile-nav-item:hover {
+                transform: translateX(4px);
             }
 
-            #mobile-menu.show .mobile-nav-link:nth-child(3) {
-                transition-delay: 0.3s;
+            .mobile-cta-btn {
+                transition: all 0.2s ease;
+                min-height: 56px;
             }
 
-            #mobile-menu.show .mobile-nav-link:nth-child(4) {
-                transition-delay: 0.4s;
+            /* Mobile menu scrolling */
+            #mobile-menu .bg-white {
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
             }
 
-            .mobile-cta-button {
-                transform: translateY(20px);
-                opacity: 0;
-                transition: all 0.4s ease;
-            }
-
-            #mobile-menu.show .mobile-cta-button {
-                transform: translateY(0);
-                opacity: 1;
-                transition-delay: 0.5s;
+            #mobile-menu .bg-white::-webkit-scrollbar {
+                display: none;
             }
 
             /* Hamburger menu button animation */
@@ -460,48 +450,15 @@
                 transform: scale(1.05);
             }
 
-            /* Enhanced touch targets */
-            .mobile-nav-link {
-                min-height: 60px;
-                display: flex;
-                align-items: center;
-                position: relative;
-                overflow: hidden;
-                border-radius: 12px;
-                margin: 4px 0;
-                padding: 0 16px;
+            /* Modern Mobile Menu Touch Targets */
+            .mobile-nav-item {
+                min-height: 48px;
+                touch-action: manipulation;
             }
 
-            .mobile-nav-link::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 0;
-                height: 100%;
-                background: linear-gradient(90deg, rgba(255, 127, 62, 0.15), rgba(255, 127, 62, 0.08));
-                transition: width 0.3s ease;
-                z-index: -1;
-                border-radius: 12px;
-            }
-
-            .mobile-nav-link:hover::before,
-            .mobile-nav-link:active::before {
-                width: 100%;
-            }
-
-            .mobile-nav-link:active {
-                transform: scale(0.98);
-            }
-
-            /* CTA button enhancements */
-            .mobile-cta-button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 20px 40px rgba(255, 127, 62, 0.3);
-            }
-
-            .mobile-cta-button:active {
-                transform: translateY(0);
+            .mobile-cta-btn {
+                min-height: 48px;
+                touch-action: manipulation;
             }
 
             /* Improved form spacing on mobile */
@@ -556,13 +513,16 @@
             /* Ensure all sections don't overflow and optimize scrolling */
             section {
                 overflow-x: hidden !important;
-                -webkit-overflow-scrolling: touch;
-                transform: translateZ(0);
-                /* Enable hardware acceleration */
-                will-change: scroll-position;
-                /* Prevent layout shifts that cause scroll issues */
-                contain: layout style;
                 position: relative;
+            }
+
+            /* Mobile section optimizations */
+            @media (max-width: 768px) {
+                section {
+                    transform: none !important;
+                    will-change: auto !important;
+                    contain: none !important;
+                }
             }
 
             /* Optimize scrollable containers */
@@ -854,9 +814,22 @@
             .service-card,
             .insight-card,
             .testimonial-card {
-                transform: translateZ(0);
+                transform: none !important;
                 backface-visibility: hidden;
                 will-change: auto;
+                position: relative;
+            }
+
+            /* Disable problematic transforms on mobile */
+            @media (max-width: 768px) {
+                .service-card {
+                    transform: none !important;
+                    transition: none !important;
+                }
+
+                .service-card:hover {
+                    transform: none !important;
+                }
             }
 
             /* Prevent body scroll when mobile menu is open */
@@ -865,6 +838,13 @@
                 position: fixed;
                 width: 100%;
                 height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            /* Modern mobile menu - no scrolling */
+            #mobile-menu .bg-gradient-to-b {
+                overflow: hidden;
             }
 
             /* Optimize fixed header for mobile scrolling */
@@ -989,71 +969,83 @@
         </div>
     </header>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 z-50 lg:hidden">
-        <!-- Backdrop with blur effect -->
-        <div
-            class="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-blue-900/90 to-slate-800/95 backdrop-blur-xl">
-        </div>
+    <!-- Modern Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-50 lg:hidden transform translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
 
-        <!-- Menu container -->
-        <div class="relative h-full flex flex-col">
-            <!-- Header with close button -->
-            <div class="flex justify-between items-center p-6 sm:p-8">
-                <img src="assets/whitebg.png" alt="Vishnorex Logo" class="h-8 sm:h-10">
-                <button id="close-mobile-menu"
-                    class="text-white hover:text-accent transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
-                    <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Menu Panel -->
+        <div class="absolute right-0 top-0 h-full w-72 max-w-sm bg-white shadow-xl overflow-y-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10">
+                <img src="assets/nobg.png" alt="Vishnorex Logo" class="h-8">
+                <button id="close-mobile-menu" class="p-2 rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
                     </svg>
                 </button>
             </div>
 
-            <!-- Navigation -->
-            <nav class="flex-1 flex flex-col justify-center px-6 sm:px-8">
-                <div class="space-y-2">
+            <!-- Navigation Content -->
+            <div class="py-6">
+                <!-- Navigation Links -->
+                <nav class="px-6">
                     <a href="#services"
-                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
-                        <span
-                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        Services
+                        class="mobile-nav-item flex items-center py-4 text-gray-800 hover:text-blue-600 border-b border-gray-100 transition-colors">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-8"></span>
+                        <span class="text-base font-medium">Services</span>
                     </a>
+
                     <a href="#about"
-                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
-                        <span
-                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        About
+                        class="mobile-nav-item flex items-center py-4 text-gray-800 hover:text-blue-600 border-b border-gray-100 transition-colors">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-8"></span>
+                        <span class="text-base font-medium">About</span>
                     </a>
+
                     <a href="#products"
-                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
-                        <span
-                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        Products
+                        class="mobile-nav-item flex items-center py-4 text-gray-800 hover:text-blue-600 border-b border-gray-100 transition-colors">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-8"></span>
+                        <span class="text-base font-medium">Products</span>
                     </a>
+
                     <a href="#insights"
-                        class="mobile-nav-link group flex items-center py-4 text-white text-xl sm:text-2xl font-medium transition-all duration-300 hover:text-accent border-b border-white/10 hover:border-accent/30">
-                        <span
-                            class="w-2 h-2 bg-accent rounded-full mr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                        Insights
+                        class="mobile-nav-item flex items-center py-4 text-gray-800 hover:text-blue-600 border-b border-gray-100 transition-colors">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-8"></span>
+                        <span class="text-base font-medium">Insights</span>
                     </a>
-                </div>
+                </nav>
 
-                <!-- CTA Button -->
-                <div class="mt-12 sm:mt-16">
+                <!-- CTA Section -->
+                <div class="px-6 mt-8 mb-8">
                     <a href="#contact"
-                        class="mobile-cta-button block w-full text-center bg-gradient-to-r from-accent to-orange-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-accent/25 hover:scale-105 text-lg sm:text-xl">
-                        Schedule a Consultation
-                        <svg class="inline-block ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
+                        class="mobile-cta-btn block w-full bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        Schedule Consultation
                     </a>
                 </div>
-            </nav>
 
-            <!-- Footer -->
-            <div class="p-6 sm:p-8 text-center">
-                <p class="text-white/60 text-sm">© 2025 Vishnorex. All rights reserved.</p>
+                <!-- Social Links -->
+                <div class="px-6 pt-6 border-t border-gray-100">
+                    <p class="text-sm text-gray-500 mb-6">Follow us</p>
+                    <div class="space-y-4">
+                        <a href="#" class="flex items-center text-gray-600 hover:text-pink-600 transition-colors">
+                            <svg class="w-5 h-5 mr-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                            <span class="text-sm font-medium">Instagram</span>
+                        </a>
+
+                        <a href="#" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                            <svg class="w-5 h-5 mr-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                            <span class="text-sm font-medium">LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1485,7 +1477,7 @@
                 };
                 img.src = './assets/bg.webp';
             };
-            
+
             // Start preloading immediately
             preloadBackgroundImage();
 
@@ -1540,38 +1532,65 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMobileMenu = document.getElementById('close-mobile-menu');
 
+            // Debug logging
+            console.log('Mobile menu elements:', { mobileMenuButton, mobileMenu, closeMobileMenu });
+
             function openMobileMenu() {
-                mobileMenu.classList.remove('hidden');
-                mobileMenuButton.classList.add('active');
-                document.body.classList.add('menu-open');
-                // Trigger animation after a small delay to ensure element is visible
-                setTimeout(() => {
+                console.log('Opening mobile menu');
+                if (mobileMenu) {
                     mobileMenu.classList.add('show');
-                }, 10);
+                    document.body.style.overflow = 'hidden';
+
+                    if (mobileMenuButton) {
+                        mobileMenuButton.classList.add('active');
+                    }
+                    console.log('Mobile menu opened');
+                } else {
+                    console.error('Mobile menu element not found');
+                }
             }
 
             function closeMobileMenuFunc() {
-                mobileMenu.classList.remove('show');
-                mobileMenuButton.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                // Hide element after animation completes
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 400);
+                console.log('Closing mobile menu');
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('show');
+                    document.body.style.overflow = '';
+
+                    if (mobileMenuButton) {
+                        mobileMenuButton.classList.remove('active');
+                    }
+                    console.log('Mobile menu closed');
+                } else {
+                    console.error('Mobile menu element not found for closing');
+                }
             }
 
             // Open mobile menu
             if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', openMobileMenu);
+                console.log('Adding click listener to mobile menu button');
+                mobileMenuButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    console.log('Mobile menu button clicked');
+                    openMobileMenu();
+                });
+            } else {
+                console.error('Mobile menu button not found');
             }
 
             // Close mobile menu
             if (closeMobileMenu) {
-                closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+                console.log('Adding click listener to close mobile menu button');
+                closeMobileMenu.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    console.log('Close mobile menu button clicked');
+                    closeMobileMenuFunc();
+                });
+            } else {
+                console.error('Close mobile menu button not found');
             }
 
             // Close mobile menu when clicking on a nav link
-            const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
+            const mobileMenuLinks = mobileMenu?.querySelectorAll('.mobile-nav-item, .mobile-cta-btn');
             if (mobileMenuLinks) {
                 mobileMenuLinks.forEach(link => {
                     link.addEventListener('click', closeMobileMenuFunc);
@@ -1581,7 +1600,7 @@
             // Close mobile menu when clicking on backdrop
             if (mobileMenu) {
                 mobileMenu.addEventListener('click', function (e) {
-                    // Only close if clicking on the backdrop (the menu container itself)
+                    // Only close if clicking on the backdrop
                     if (e.target === mobileMenu) {
                         closeMobileMenuFunc();
                     }
