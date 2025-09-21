@@ -409,17 +409,20 @@
 
             /* Force mobile menu icon spacing */
             .mobile-nav-item .w-8.h-8 {
-                margin-right: 16px !important; /* Reduced to 1rem spacing */
+                margin-right: 16px !important;
+                /* Reduced to 1rem spacing */
             }
 
             /* Force social media icon spacing */
             .flex.justify-center a .w-6.h-6 {
-                margin-right: 12px !important; /* Reduced to 0.75rem spacing for social icons */
+                margin-right: 12px !important;
+                /* Reduced to 0.75rem spacing for social icons */
             }
 
             /* Increase spacing between social media items */
-            .flex.justify-center.space-x-8 > a:not(:last-child) {
-                margin-right: 20px !important; /* Reduced spacing between social items */
+            .flex.justify-center.space-x-8>a:not(:last-child) {
+                margin-right: 20px !important;
+                /* Reduced spacing between social items */
             }
 
             .mobile-cta-btn {
@@ -438,19 +441,7 @@
                 }
             }
 
-            /* Remove all glass effects from mobile menu */
-            #mobile-menu,
-            #mobile-menu *,
-            .mobile-menu,
-            .mobile-menu * {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
 
-            /* Ensure mobile menu has solid background */
-            #mobile-menu {
-                background: rgba(255, 255, 255, 1) !important;
-            }
 
             /* Prevent scrolling when menu is open */
             body.menu-open {
@@ -754,20 +745,29 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Mobile header - always visible with glass effect */
+        /* Mobile header - behaves exactly like desktop */
         @media (max-width: 768px) {
             #main-header {
-                background: rgba(255, 255, 255, 0.1);
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 50 !important;
+                background: transparent;
+            }
+
+            #main-header.header-glass {
+                background: rgba(255, 255, 255, 0.08);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             }
 
             #main-header.header-scrolled {
-                background: rgba(255, 255, 255, 0.95);
+                background: rgba(255, 255, 255, 0.6);
                 backdrop-filter: blur(16px) saturate(180%);
                 -webkit-backdrop-filter: blur(16px) saturate(180%);
-                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             }
         }
@@ -1028,8 +1028,7 @@
     <div id="mobile-menu"
         class="fixed top-20 right-4 z-50 lg:hidden transform translate-x-full transition-transform duration-300 ease-out">
         <!-- Menu Card -->
-        <div
-            class="w-80 max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="w-80 max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl border border-gray-200">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-gray-100">
                 <img src="assets/nobg.png" alt="Vishnorex Logo" class="h-7">
