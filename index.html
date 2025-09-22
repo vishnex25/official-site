@@ -30,6 +30,9 @@
 
     <!-- Preload critical background image for faster loading -->
     <link rel="preload" href="./assets/bg.webp" as="image" type="image/webp">
+    
+    <!-- Favicon to prevent 404 error -->
+    <link rel="icon" type="image/png" href="./assets/weblogo.png">
 
     <style>
         * {
@@ -52,9 +55,6 @@
             /* Optimize mobile scrolling */
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: contain;
-        }
-
-        body {
             color: #2E2E2E;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -403,26 +403,17 @@
                 min-height: 64px;
             }
 
+            .mobile-nav-item .nav-icon {
+                margin-right: 1.5rem !important; /* Natural spacing between icon and text */
+            }
+
+            /* Social media button spacing */
+            .social-btn-icon {
+                margin-right: 0.75rem !important; /* Natural spacing for social buttons */
+            }
+
             .mobile-nav-item:active {
                 transform: scale(0.98);
-            }
-
-            /* Force mobile menu icon spacing */
-            .mobile-nav-item .w-8.h-8 {
-                margin-right: 16px !important;
-                /* Reduced to 1rem spacing */
-            }
-
-            /* Force social media icon spacing */
-            .flex.justify-center a .w-6.h-6 {
-                margin-right: 12px !important;
-                /* Reduced to 0.75rem spacing for social icons */
-            }
-
-            /* Increase spacing between social media items */
-            .flex.justify-center.space-x-8>a:not(:last-child) {
-                margin-right: 20px !important;
-                /* Reduced spacing between social items */
             }
 
             .mobile-cta-btn {
@@ -434,21 +425,18 @@
                 transform: scale(0.98);
             }
 
-            /* Glassmorphism effects */
-            @supports (backdrop-filter: blur(10px)) {
-                .backdrop-blur-sm {
-                    backdrop-filter: blur(8px);
-                }
+            /* Remove all glass effects from mobile menu */
+            #mobile-menu,
+            #mobile-menu *,
+            .mobile-menu,
+            .mobile-menu * {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
             }
-
-
 
             /* Prevent scrolling when menu is open */
             body.menu-open {
                 overflow: hidden;
-                position: fixed;
-                width: 100%;
-                height: 100%;
             }
 
             /* Hamburger menu button animation */
@@ -542,15 +530,9 @@
             section {
                 overflow-x: hidden !important;
                 position: relative;
-            }
-
-            /* Mobile section optimizations */
-            @media (max-width: 768px) {
-                section {
-                    transform: none !important;
-                    will-change: auto !important;
-                    contain: none !important;
-                }
+                transform: none !important;
+                will-change: auto !important;
+                contain: none !important;
             }
 
             /* Optimize scrollable containers */
@@ -738,46 +720,21 @@
         }
 
         .header-scrolled {
-            background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Mobile header - behaves exactly like desktop */
-        @media (max-width: 768px) {
-            #main-header {
-                position: fixed !important;
-                top: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
-                z-index: 50 !important;
-                background: transparent;
-            }
+        /* Mobile header - same behavior as desktop */
+     
 
-            #main-header.header-glass {
-                background: rgba(255, 255, 255, 0.08);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            #main-header.header-scrolled {
-                background: rgba(255, 255, 255, 0.6);
-                backdrop-filter: blur(16px) saturate(180%);
-                -webkit-backdrop-filter: blur(16px) saturate(180%);
-                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            }
-        }
-
-        /* Glass effect for header over hero only */
+        /* Glass effect class for additional styling */
         .header-glass {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
         }
 
         .header-scrolled .nav-link,
@@ -873,28 +830,16 @@
                 backface-visibility: hidden;
                 will-change: auto;
                 position: relative;
+                transition: none !important;
             }
 
-            /* Disable problematic transforms on mobile */
-            @media (max-width: 768px) {
-                .service-card {
-                    transform: none !important;
-                    transition: none !important;
-                }
-
-                .service-card:hover {
-                    transform: none !important;
-                }
+            .service-card:hover {
+                transform: none !important;
             }
 
             /* Prevent body scroll when mobile menu is open */
             body.menu-open {
                 overflow: hidden;
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
             }
 
             /* Modern mobile menu - no scrolling */
@@ -903,10 +848,11 @@
             }
 
             /* Optimize fixed header for mobile scrolling */
-            #main-header {
-                transform: translateZ(0);
-                backface-visibility: hidden;
-                will-change: transform;
+          
+
+            /* Ensure body doesn't interfere with fixed positioning */
+            body {
+                position: relative !important;
             }
 
             button,
@@ -1028,7 +974,8 @@
     <div id="mobile-menu"
         class="fixed top-20 right-4 z-50 lg:hidden transform translate-x-full transition-transform duration-300 ease-out">
         <!-- Menu Card -->
-        <div class="w-80 max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl border border-gray-200">
+        <div
+            class="w-80 max-w-[calc(100vw-2rem)] bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
             <!-- Header -->
             <div class="flex items-center justify-between p-4 border-b border-gray-100">
                 <img src="assets/nobg.png" alt="Vishnorex Logo" class="h-7">
@@ -1047,7 +994,7 @@
                     <a href="#services"
                         class="mobile-nav-item group flex items-center p-3 rounded-xl hover:bg-blue-50 transition-all duration-200">
                         <div
-                            class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-8 group-hover:scale-105 transition-transform duration-200">
+                            class="nav-icon w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -1059,7 +1006,7 @@
                     <a href="#about"
                         class="mobile-nav-item group flex items-center p-3 rounded-xl hover:bg-green-50 transition-all duration-200">
                         <div
-                            class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mr-8 group-hover:scale-105 transition-transform duration-200">
+                            class="nav-icon w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -1071,7 +1018,7 @@
                     <a href="#products"
                         class="mobile-nav-item group flex items-center p-3 rounded-xl hover:bg-purple-50 transition-all duration-200">
                         <div
-                            class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center mr-8 group-hover:scale-105 transition-transform duration-200">
+                            class="nav-icon w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
@@ -1084,7 +1031,7 @@
                     <a href="#insights"
                         class="mobile-nav-item group flex items-center p-3 rounded-xl hover:bg-orange-50 transition-all duration-200">
                         <div
-                            class="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mr-8 group-hover:scale-105 transition-transform duration-200">
+                            class="nav-icon w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                             <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
@@ -1112,9 +1059,9 @@
                     <p class="text-xs text-gray-500 mb-3 text-center">Follow us</p>
                     <div class="flex justify-center space-x-8">
                         <a href="https://www.instagram.com/vishnorexzone/"
-                            class="group flex items-center space-x-6 p-2 rounded-lg hover:bg-pink-50 transition-all duration-200">
+                            class="group flex items-center p-2 rounded-lg hover:bg-pink-50 transition-all duration-200">
                             <div
-                                class="w-6 h-6 bg-gradient-to-br from-pink-500 to-orange-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                                class="social-btn-icon w-6 h-6 bg-gradient-to-br from-pink-500 to-orange-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -1123,10 +1070,10 @@
                             <span class="text-xs font-medium text-gray-700">Instagram</span>
                         </a>
 
-                        <a href=""
-                            class="group flex items-center space-x-6 p-2 rounded-lg hover:bg-blue-50 transition-all duration-200">
+                        <a href="#"
+                            class="group flex items-center p-2 rounded-lg hover:bg-blue-50 transition-all duration-200">
                             <div
-                                class="w-6 h-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                                class="social-btn-icon w-6 h-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path
                                         d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -1624,11 +1571,7 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMobileMenu = document.getElementById('close-mobile-menu');
 
-            // Debug logging
-            console.log('Mobile menu elements:', { mobileMenuButton, mobileMenu, closeMobileMenu });
-
             function openMobileMenu() {
-                console.log('Opening mobile menu');
                 if (mobileMenu) {
                     mobileMenu.classList.add('show');
                     document.body.style.overflow = 'hidden';
@@ -1636,14 +1579,12 @@
                     if (mobileMenuButton) {
                         mobileMenuButton.classList.add('active');
                     }
-                    console.log('Mobile menu opened');
                 } else {
                     console.error('Mobile menu element not found');
                 }
             }
 
             function closeMobileMenuFunc() {
-                console.log('Closing mobile menu');
                 if (mobileMenu) {
                     mobileMenu.classList.remove('show');
                     document.body.style.overflow = '';
@@ -1651,7 +1592,6 @@
                     if (mobileMenuButton) {
                         mobileMenuButton.classList.remove('active');
                     }
-                    console.log('Mobile menu closed');
                 } else {
                     console.error('Mobile menu element not found for closing');
                 }
@@ -1659,10 +1599,8 @@
 
             // Open mobile menu
             if (mobileMenuButton) {
-                console.log('Adding click listener to mobile menu button');
                 mobileMenuButton.addEventListener('click', function (e) {
                     e.preventDefault();
-                    console.log('Mobile menu button clicked');
                     openMobileMenu();
                 });
             } else {
@@ -1671,10 +1609,8 @@
 
             // Close mobile menu
             if (closeMobileMenu) {
-                console.log('Adding click listener to close mobile menu button');
                 closeMobileMenu.addEventListener('click', function (e) {
                     e.preventDefault();
-                    console.log('Close mobile menu button clicked');
                     closeMobileMenuFunc();
                 });
             } else {
