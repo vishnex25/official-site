@@ -103,6 +103,7 @@
         }
 
         .service-card {
+            background: linear-gradient(135deg, rgba(240, 244, 255, 0.8), rgba(224, 231, 255, 0.8), rgba(199, 210, 254, 0.8));
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -551,6 +552,8 @@
 
         .modal-body {
             padding: 0 32px 32px;
+            overflow-y: auto;
+            max-height: calc(90vh - 100px);
         }
 
         .modal-image {
@@ -714,6 +717,11 @@
         #main-header:not(.header-scrolled) #consult-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-1px);
+        }
+
+        /* Navbar bottom border */
+        #main-header {
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Enhanced glass effect */
@@ -890,6 +898,7 @@
             .scroll-down .touch {
                 display: block;
             }
+
             /* Remove scroll indicator entirely on mobile */
             .scroll-down {
                 display: none;
@@ -1307,6 +1316,7 @@
 
         /* Hide white gradients on mobile */
         @media (max-width:640px) {
+
             #process .process-viewport:before,
             #process .process-viewport:after {
                 display: none;
@@ -2065,6 +2075,7 @@
         }
 
         @media (max-width:767px) {
+
             /* Show compact step badges on mobile */
             #process .num {
                 display: inline-block;
@@ -2072,10 +2083,10 @@
                 right: 12px;
                 font-size: .65rem;
                 padding: 3px 7px;
-                background: rgba(255,255,255,0.95);
+                background: rgba(255, 255, 255, 0.95);
                 color: #0f172a;
-                border: 1px solid rgba(15,23,42,0.06);
-                box-shadow: 0 4px 10px -6px rgba(0,0,0,0.2);
+                border: 1px solid rgba(15, 23, 42, 0.06);
+                box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.2);
             }
         }
 
@@ -2128,10 +2139,10 @@
                         class="h-10 md:h-12 transition-all duration-300 logo-color hidden">
                 </a>
                 <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#services" class="nav-link font-medium">Services</a>
                     <a href="#about" class="nav-link font-medium">About</a>
+                    <a href="#services" class="nav-link font-medium">Services</a>
                     <a href="#case-studies" class="nav-link font-medium">Case Studies</a>
-                    <a href="#process" class="nav-link font-medium">Process</a>
+                    <a href="#courses" class="nav-link font-medium">Courses</a>
                 </nav>
                 <div class="flex items-center">
                     <a href="#contact" id="consult-button"
@@ -2157,6 +2168,15 @@
         </div>
 
         <nav class="space-y-2">
+            <a href="#about" class="menu-item">
+                <div class="menu-icon bg-green-100">
+                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                    </svg>
+                </div>
+                <span>About</span>
+            </a>
             <a href="#services" class="menu-item">
                 <div class="menu-icon bg-blue-100">
                     <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
@@ -2167,15 +2187,7 @@
                 </div>
                 <span>Services</span>
             </a>
-            <a href="#about" class="menu-item">
-                <div class="menu-icon bg-green-100">
-                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                    </svg>
-                </div>
-                <span>About</span>
-            </a>
+
             <a href="#case-studies" class="menu-item">
                 <div class="menu-icon bg-purple-100">
                     <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
@@ -2185,13 +2197,13 @@
                 </div>
                 <span>Products</span>
             </a>
-            <a href="#process" class="menu-item">
+            <a href="#courses" class="menu-item">
                 <div class="menu-icon bg-indigo-100">
                     <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l4 4-4 4-4-4 4-4zm0 8l4 4-4 4-4-4 4-4zm0 8l4 4-4 4-4-4 4-4z" />
                     </svg>
                 </div>
-                <span>Process</span>
+                <span>Courses</span>
             </a>
 
         </nav>
@@ -2272,89 +2284,7 @@
                 <span class="arrow"></span>
             </a>
         </section>
-        <section id="services" class="py-20 md:py-32">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="font-h text-4xl md:text-5xl font-bold mb-4">Our Core Capabilities</h2>
-                    <p class="text-lg text-slate-500 max-w-2xl mx-auto">We provide end-to-end technology solutions
-                        designed to solve complex business challenges and create lasting value.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="Cloud & DevOps service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-3xl text-blue-500">
-                            ☁️</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">Cloud & DevOps</h3>
-                        <p class="text-slate-500">Architecting scalable, resilient, and cost‑efficient cloud platforms
-                            with automated CI/CD so you ship faster & safer.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Avg infra cost reduction: <span
-                                class="text-accent">15–30%</span></p>
-                    </div>
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="Cybersecurity service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-green-100 flex items-center justify-center text-3xl text-green-500">
-                            🛡️</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">Cybersecurity</h3>
-                        <p class="text-slate-500">Implementing Zero Trust & continuous monitoring to harden attack
-                            surface and accelerate compliance.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Incident noise reduced up to
-                            <span class="text-accent">99%</span>
-                        </p>
-                    </div>
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="AI and Machine Learning service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-3xl text-purple-500">
-                            💡</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">AI & Machine Learning</h3>
-                        <p class="text-slate-500">Designing production ML & GenAI solutions that automate decisions and
-                            create new revenue streams.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Model deployment time: <span
-                                class="text-accent">weeks → days</span></p>
-                    </div>
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="Custom Software service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-red-100 flex items-center justify-center text-3xl text-red-500">
-                            ⚙️</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">Custom Software</h3>
-                        <p class="text-slate-500">Engineering high‑performance platforms aligned to core workflows &
-                            scale goals.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Time‑to‑market acceleration:
-                            <span class="text-accent">2–4×</span>
-                        </p>
-                    </div>
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="Data and Analytics service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-3xl text-yellow-500">
-                            📊</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">Data & Analytics</h3>
-                        <p class="text-slate-500">Turning raw siloed data into governed, analytics‑ready assets & clear
-                            decision dashboards.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Operational reporting time:
-                            <span class="text-accent">−50%</span>
-                        </p>
-                    </div>
-                    <div class="service-card reveal bg-white p-8 rounded-2xl shadow-sm"
-                        aria-label="IT Strategy Consulting service">
-                        <div
-                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-accent bg-opacity-20 flex items-center justify-center text-3xl text-accent">
-                            🤝</div>
-                        <h3 class="font-h text-2xl font-semibold mb-3">IT Strategy Consulting</h3>
-                        <p class="text-slate-500">Advising on roadmaps, governance & modernization to align investments
-                            with measurable outcomes.</p>
-                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Strategic roadmap clarity:
-                            <span class="text-accent">+100%</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="py-20 md:py-32 bg-white">
+        <section id="about" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
@@ -2372,12 +2302,12 @@
                         <div class="grid grid-cols-2 gap-8 text-center mt-10">
                             <div>
                                 <div class="font-h text-5xl font-bold text-accent"><span class="count-up"
-                                        data-target="10" data-suffix="+">0</span></div>
+                                        data-target="100" data-suffix="+">0</span></div>
                                 <p class="text-slate-500 mt-2">Successful Projects</p>
                             </div>
                             <div>
                                 <div class="font-h text-5xl font-bold text-accent"><span class="count-up"
-                                        data-target="98" data-suffix="%">0</span></div>
+                                        data-target="90" data-suffix="%">0</span></div>
                                 <p class="text-slate-500 mt-2">Client Satisfaction</p>
                             </div>
                         </div>
@@ -2385,6 +2315,85 @@
                 </div>
             </div>
         </section>
+        <section id="services" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-h text-4xl md:text-5xl font-bold mb-4">Our Core Capabilities</h2>
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto">We provide end-to-end technology solutions
+                        designed to solve complex business challenges and create lasting value.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm" aria-label="Cloud & DevOps service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-3xl text-blue-500">
+                            ☁️</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">Cloud & DevOps</h3>
+                        <p class="text-slate-500">Architecting scalable, resilient, and cost‑efficient cloud platforms
+                            with automated CI/CD so you ship faster & safer.</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Avg infra cost reduction: <span
+                                class="text-accent">15–30%</span></p>
+                    </div>
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm" aria-label="Cybersecurity service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-green-100 flex items-center justify-center text-3xl text-green-500">
+                            🛡️</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">Cybersecurity</h3>
+                        <p class="text-slate-500">Implementing Zero Trust & continuous monitoring to harden attack
+                            surface and accelerate compliance.</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Incident noise reduced up to
+                            <span class="text-accent">99%</span>
+                        </p>
+                    </div>
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm"
+                        aria-label="AI and Machine Learning service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-3xl text-purple-500">
+                            💡</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">AI & Machine Learning</h3>
+                        <p class="text-slate-500">Designing production ML & GenAI solutions that automate decisions and
+                            create new revenue streams.</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Model deployment time: <span
+                                class="text-accent">weeks → days</span></p>
+                    </div>
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm" aria-label="Custom Software service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-red-100 flex items-center justify-center text-3xl text-red-500">
+                            ⚙️</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">Custom Software</h3>
+                        <p class="text-slate-500">Engineering high‑performance platforms aligned to core workflows &
+                            scale goals.</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Time‑to‑market acceleration:
+                            <span class="text-accent">2–4×</span>
+                        </p>
+                    </div>
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm" aria-label="Data and Analytics service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-3xl text-yellow-500">
+                            📊</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">Data & Analytics</h3>
+                        <p class="text-slate-500">Turning raw siloed data into governed, analytics‑ready assets & clear
+                            decision dashboards.</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Operational reporting time:
+                            <span class="text-accent">−50%</span>
+                        </p>
+                    </div>
+                    <div class="service-card reveal p-8 rounded-2xl shadow-sm"
+                        aria-label="Student Internship and Project service">
+                        <div
+                            class="icon-container w-16 h-16 mb-6 rounded-xl bg-indigo-100 flex items-center justify-center text-3xl text-indigo-600">
+                            🎓</div>
+                        <h3 class="font-h text-2xl font-semibold mb-3">Student Internship & Projects</h3>
+                        <p class="text-slate-500">Empowering students with real-world experience through hands-on
+                            internships and provide projects</p>
+                        <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Career readiness:
+                            <span class="text-accent">+85%</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 
         <section id="case-studies" class="py-20 md:py-32">
             <div class="container mx-auto px-6">
@@ -2449,158 +2458,167 @@
 
 
         <section class="text-slate-800 py-20 md:py-32">
-            <!-- Our Process – How We Build With You -->
-            <section id="process" class="py-24 md:py-32 bg-white relative">
+            <!-- Internship Courses Section -->
+            <section id="courses" class="py-24 md:py-32 bg-white relative">
                 <div class="container mx-auto px-6 relative">
                     <div class="max-w-4xl mx-auto text-center mb-16">
-                        <h2 class="font-h text-4xl md:text-5xl font-bold mb-6 tracking-tight">Our Process – How We Build
-                            With You</h2>
-                        <p class="text-lg text-slate-300 leading-relaxed">From Vision to Deployment, Every Step is
-                            Human-Centered and Scalable. At Vishnorex, we believe great software is built through
-                            clarity, collaboration, and craftsmanship. Our process is designed to be modular,
-                            transparent, and tailored to your business goals.</p>
+                        <h2 class="font-h text-4xl md:text-5xl font-bold mb-6 tracking-tight text-slate-800">Internship
+                            Courses</h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">Gain hands-on experience with
+                            industry-relevant skills. Choose from our comprehensive internship programs designed to
+                            accelerate your career.</p>
                     </div>
-                    <div class="process-slider" aria-roledescription="carousel">
-                        <!-- Navigation Buttons -->
-                        <button class="process-nav-btn prev" id="process-prev-btn" aria-label="Previous step">
-                            ←
-                        </button>
-                        <button class="process-nav-btn next" id="process-next-btn" aria-label="Next step">
-                            →
-                        </button>
-                        <div class="process-viewport" tabindex="0" aria-live="polite">
-                            <div class="process-track">
-                                <div class="process-slide is-active" data-index="0" aria-label="Step 1 of 5">
-                                    <div class="num">1</div>
-                                    <h3>🔍 Discovery & Strategy</h3>
-                                    <p>We begin by understanding your business, users, and goals. Through structured
-                                        conversations and prompt-driven workshops, we define the scope, priorities, and
-                                        success metrics that matter most.</p>
 
-                                    <div class="process-actions">
-                                        <div class="action-item">📋 <strong>Business Analysis:</strong> Deep dive into
-                                            your current processes and pain points</div>
-                                        <div class="action-item">🎯 <strong>Goal Setting:</strong> Define clear,
-                                            measurable objectives and KPIs</div>
-                                        <div class="action-item">👥 <strong>Stakeholder Interviews:</strong> Gather
-                                            insights from key team members</div>
-                                        <div class="action-item">📊 <strong>Market Research:</strong> Analyze
-                                            competitors and industry best practices</div>
-                                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Course 1: Full Stack -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('fullstack')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-blue-100 flex items-center justify-center text-3xl text-blue-600">
+                                💻</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Full Stack Development</h3>
+                            <p class="text-slate-500">Master front-end and back-end technologies to build complete web
+                                applications.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
 
-                                    <div class="process-deliverables">
-                                        <div class="deliverable-title">📦 Deliverables</div>
-                                        <div class="deliverable-list">Project Charter • Requirements Document •
-                                            Technical Specifications • Timeline & Budget</div>
-                                    </div>
-                                    <div class="quote">“We ask the right questions—so your software solves the right
-                                        problems.”</div>
-                                </div>
-                                <div class="process-slide" data-index="1" aria-label="Step 2 of 5">
-                                    <div class="num">2</div>
-                                    <h3>🎨 Design & Prototyping</h3>
-                                    <p>Using branded UI/UX patterns and design-inspired aesthetics, we craft wireframes
-                                        and interactive prototypes that reflect your identity and user needs perfectly.
-                                    </p>
+                        <!-- Course 2: IoT -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('iot')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-green-100 flex items-center justify-center text-3xl text-green-600">
+                                🔌</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Internet of Things (IoT)</h3>
+                            <p class="text-slate-500">Learn to connect and control smart devices with sensors and
+                                embedded systems.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
 
-                                    <div class="process-actions">
-                                        <div class="action-item">✏️ <strong>Wireframing:</strong> Create detailed
-                                            layouts and user flow diagrams</div>
-                                        <div class="action-item">🎨 <strong>Visual Design:</strong> Develop branded UI
-                                            components and style guides</div>
-                                        <div class="action-item">📱 <strong>Prototyping:</strong> Build interactive
-                                            mockups for user testing</div>
-                                        <div class="action-item">🔄 <strong>Iteration:</strong> Refine designs based on
-                                            feedback and usability tests</div>
-                                    </div>
+                        <!-- Course 3: Cloud DevOps -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('devops')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-purple-100 flex items-center justify-center text-3xl text-purple-600">
+                                ☁️</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Cloud DevOps</h3>
+                            <p class="text-slate-500">Deploy and manage scalable applications using modern cloud
+                                platforms and CI/CD.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
 
-                                    <div class="process-deliverables">
-                                        <div class="deliverable-title">🎯 Deliverables</div>
-                                        <div class="deliverable-list">Wireframes • UI/UX Designs • Interactive
-                                            Prototypes • Design System • Style Guide</div>
-                                    </div>
-                                    <div class="quote">“Every pixel has purpose. Every screen tells your story.”</div>
-                                </div>
-                                <div class="process-slide" data-index="2" aria-label="Step 3 of 5">
-                                    <div class="num">3</div>
-                                    <h3>⚡ Development & Integration</h3>
-                                    <p>Our modular architecture ensures scalability and speed. We build reusable
-                                        components using React, Next.js, and Tailwind CSS, integrating seamlessly with
-                                        your existing systems and workflows.</p>
+                        <!-- Course 4: Python -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('python')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-yellow-100 flex items-center justify-center text-3xl text-yellow-600">
+                                🐍</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Python Programming</h3>
+                            <p class="text-slate-500">Build powerful applications with Python for web development,
+                                automation, and data science.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
 
-                                    <div class="process-actions">
-                                        <div class="action-item">🏗️ <strong>Architecture Setup:</strong> Build
-                                            scalable, maintainable code foundation</div>
-                                        <div class="action-item">⚙️ <strong>Component Development:</strong> Create
-                                            reusable UI components and modules</div>
-                                        <div class="action-item">🔗 <strong>API Integration:</strong> Connect with
-                                            databases, third-party services, and APIs</div>
-                                        <div class="action-item">🔒 <strong>Security Implementation:</strong> Add
-                                            authentication, authorization, and data protection</div>
-                                    </div>
+                        <!-- Course 5: Cybersecurity -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('cybersecurity')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-red-100 flex items-center justify-center text-3xl text-red-600">
+                                🛡️</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Cybersecurity</h3>
+                            <p class="text-slate-500">Protect systems and networks from cyber threats with ethical
+                                hacking and security practices.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
 
-                                    <div class="process-deliverables">
-                                        <div class="deliverable-title">🚀 Deliverables</div>
-                                        <div class="deliverable-list">Source Code • API Documentation • Database Schema
-                                            • Security Protocols • Integration Guides</div>
-                                    </div>
-                                    <div class="quote">“Code that’s clean, flexible, and ready to grow with you.”</div>
-                                </div>
-                                <div class="process-slide" data-index="3" aria-label="Step 4 of 5">
-                                    <div class="num">4</div>
-                                    <h3>🧪 Testing & Launch</h3>
-                                    <p>We rigorously test across devices and workflows, ensuring performance,
-                                        accessibility, and reliability. Once ready, we deploy with zero-hassle
-                                        onboarding and comprehensive documentation.</p>
+                        <!-- Course 6: Java -->
+                        <div class="service-card reveal p-8 rounded-2xl shadow-sm cursor-pointer"
+                            onclick="openCourseModal('java')">
+                            <div
+                                class="icon-container w-16 h-16 mb-6 rounded-xl bg-orange-100 flex items-center justify-center text-3xl text-orange-600">
+                                ☕</div>
+                            <h3 class="font-h text-2xl font-semibold mb-3">Java Development</h3>
+                            <p class="text-slate-500">Learn enterprise-level programming with Java for robust and
+                                scalable applications.</p>
+                            <p class="mt-3 text-xs font-medium text-slate-400 tracking-wide">Duration: <span
+                                    class="text-accent">3 Months</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                                    <div class="process-actions">
-                                        <div class="action-item">🔍 <strong>Quality Assurance:</strong> Comprehensive
-                                            testing across all devices and browsers</div>
-                                        <div class="action-item">⚡ <strong>Performance Testing:</strong> Optimize speed,
-                                            loading times, and responsiveness</div>
-                                        <div class="action-item">♿ <strong>Accessibility Testing:</strong> Ensure
-                                            compliance with WCAG guidelines</div>
-                                        <div class="action-item">🚀 <strong>Deployment:</strong> Seamless launch with
-                                            monitoring and backup systems</div>
-                                    </div>
+            <!-- Course Modal -->
+            <div id="course-modal" class="modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="course-modal-title" class="modal-title">Course Details</h3>
+                            <button class="modal-close" onclick="closeCourseModal()" aria-label="Close modal">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="course-modal-content"></div>
 
-                                    <div class="process-deliverables">
-                                        <div class="deliverable-title">✅ Deliverables</div>
-                                        <div class="deliverable-list">Test Reports • Performance Metrics • User Manual •
-                                            Deployment Guide • Training Materials</div>
-                                    </div>
-                                    <div class="quote">“Launch isn’t the end—it’s the beginning of impact.”</div>
-                                </div>
-                                <div class="process-slide" data-index="4" aria-label="Step 5 of 5">
-                                    <div class="num">5</div>
-                                    <h3>🤝 Support & Evolution</h3>
-                                    <p>We stay with you post-launch, offering updates, enhancements, and strategic
-                                        guidance. As your business evolves, so does your software—ensuring long-term
-                                        success and growth.</p>
+                            <!-- Contact Information -->
+                            <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                                <h4 class="font-h text-xl font-semibold mb-4 text-slate-800">Contact</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <!-- Email -->
+                                    <a href="mailto:vishnorextech@gmail.com"
+                                        class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-all">
+                                        <div
+                                            class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500">Email</p>
+                                            <p class="text-sm font-medium text-slate-800">Contact Us</p>
+                                        </div>
+                                    </a>
 
-                                    <div class="process-actions">
-                                        <div class="action-item">🛠️ <strong>Ongoing Maintenance:</strong> Regular
-                                            updates, bug fixes, and security patches</div>
-                                        <div class="action-item">📈 <strong>Performance Monitoring:</strong> Track
-                                            metrics and optimize based on real usage data</div>
-                                        <div class="action-item">🆕 <strong>Feature Enhancement:</strong> Add new
-                                            capabilities as your business grows</div>
-                                        <div class="action-item">💬 <strong>Strategic Consultation:</strong> Ongoing
-                                            advice for technology decisions and roadmap</div>
-                                    </div>
+                                    <!-- WhatsApp -->
+                                    <a href="https://wa.me/8807181522" target="_blank"
+                                        class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-all">
+                                        <div
+                                            class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500">WhatsApp</p>
+                                            <p class="text-sm font-medium text-slate-800">Chat Now</p>
+                                        </div>
+                                    </a>
 
-                                    <div class="process-deliverables">
-                                        <div class="deliverable-title">🔄 Deliverables</div>
-                                        <div class="deliverable-list">Maintenance Plan • Analytics Reports • Feature
-                                            Updates • Strategic Roadmap • 24/7 Support</div>
-                                    </div>
-                                    <div class="quote">“Your growth is our roadmap.”</div>
+                                    <!-- Instagram -->
+                                    <a href="https://www.instagram.com/vishnorexzone/" target="_blank"
+                                        class="flex items-center gap-3 p-4 bg-white rounded-lg hover:shadow-md transition-all">
+                                        <div
+                                            class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500">Instagram</p>
+                                            <p class="text-sm font-medium text-slate-800">Follow Us</p>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <!-- Main Heading -->
@@ -2629,7 +2647,8 @@
                             <!-- Social Links -->
                             <div class="text-center md:text-left">
                                 <h3 class="font-h text-xl font-bold text-slate-800 mb-3">Connect With Us</h3>
-                                <ul class="flex flex-row items-center justify-center md:flex-col md:items-start gap-4 text-sm">
+                                <ul
+                                    class="flex flex-row items-center justify-center md:flex-col md:items-start gap-4 text-sm">
                                     <li class="inline-flex">
                                         <a href="https://wa.me/8807181522"
                                             class="flex items-center gap-2 text-slate-600 hover:text-accent transition-colors">
@@ -2701,79 +2720,80 @@
                             class="space-y-6 md:space-y-8 p-8 md:p-12 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20">
                             <!-- Fields Wrapper (hidden on success) -->
                             <div id="formFields" class="space-y-5 md:space-y-6">
-                            <!-- Automatically populated hidden metadata fields for accurate timestamps -->
-                            <input type="hidden" name="submitted_local_ist" id="submitted_local_ist">
-                            <input type="hidden" name="submitted_iso_utc" id="submitted_iso_utc">
-                            <input type="hidden" name="timezone" id="timezone">
-                            <input type="hidden" name="timezone_offset_minutes" id="timezone_offset_minutes">
-                            <input type="hidden" name="_subject" id="_form_subject">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="full-name" class="block text-sm font-semibold mb-1 text-slate-700">Full
-                                        Name *</label>
-                                    <input type="text" id="full-name" name="name" required
-                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
-                                    >
+                                <!-- Automatically populated hidden metadata fields for accurate timestamps -->
+                                <input type="hidden" name="submitted_local_ist" id="submitted_local_ist">
+                                <input type="hidden" name="submitted_iso_utc" id="submitted_iso_utc">
+                                <input type="hidden" name="timezone" id="timezone">
+                                <input type="hidden" name="timezone_offset_minutes" id="timezone_offset_minutes">
+                                <input type="hidden" name="_subject" id="_form_subject">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="full-name"
+                                            class="block text-sm font-semibold mb-1 text-slate-700">Full
+                                            Name *</label>
+                                        <input type="text" id="full-name" name="name" required
+                                            class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="work-email"
+                                            class="block text-sm font-semibold mb-1 text-slate-700">Email *</label>
+                                        <input type="email" id="work-email" name="email" required
+                                            class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
+                                            placeholder="you@company.com">
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="work-email"
-                                        class="block text-sm font-semibold mb-1 text-slate-700">Email *</label>
-                                    <input type="email" id="work-email" name="email" required
-                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
-                                        placeholder="you@company.com">
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="company-name"
+                                            class="block text-sm font-semibold mb-1 text-slate-700">Company</label>
+                                        <input type="text" id="company-name" name="company"
+                                            class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
+                                            placeholder="Your Company Inc.">
+                                    </div>
+                                    <div>
+                                        <label for="phone"
+                                            class="block text-sm font-semibold mb-1 text-slate-700">Phone</label>
+                                        <input type="tel" id="phone" name="phone"
+                                            class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
+                                            placeholder="+91 ">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label for="company-name"
-                                        class="block text-sm font-semibold mb-1 text-slate-700">Company</label>
-                                    <input type="text" id="company-name" name="company"
-                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
-                                        placeholder="Your Company Inc.">
+                                    <label for="interest"
+                                        class="block text-sm font-semibold mb-1 text-slate-700">Service
+                                        Needed *</label>
+                                    <select id="interest" name="service" required
+                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm">
+                                        <option value="">Select a service...</option>
+                                        <option value="cloud-devops">Cloud & DevOps</option>
+                                        <option value="cybersecurity">Cybersecurity</option>
+                                        <option value="ai-ml">AI & Machine Learning</option>
+                                        <option value="custom-software">Custom Software Development</option>
+                                        <option value="data-analytics">Data & Analytics</option>
+                                        <option value="it-strategy">IT Strategy Consulting</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
+
                                 <div>
-                                    <label for="phone"
-                                        class="block text-sm font-semibold mb-1 text-slate-700">Phone</label>
-                                    <input type="tel" id="phone" name="phone"
-                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm"
-                                        placeholder="+91 ">
+                                    <label for="message" class="block text-sm font-semibold mb-1 text-slate-700">Project
+                                        Details *</label>
+                                    <textarea id="message" name="message" rows="3" required
+                                        class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 resize-none text-sm"
+                                        placeholder="Tell us about your project goals and requirements..."></textarea>
                                 </div>
-                            </div>
 
-                            <div>
-                                <label for="interest" class="block text-sm font-semibold mb-1 text-slate-700">Service
-                                    Needed *</label>
-                                <select id="interest" name="service" required
-                                    class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 text-sm">
-                                    <option value="">Select a service...</option>
-                                    <option value="cloud-devops">Cloud & DevOps</option>
-                                    <option value="cybersecurity">Cybersecurity</option>
-                                    <option value="ai-ml">AI & Machine Learning</option>
-                                    <option value="custom-software">Custom Software Development</option>
-                                    <option value="data-analytics">Data & Analytics</option>
-                                    <option value="it-strategy">IT Strategy Consulting</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
+                                <button type="submit" id="submitBtn"
+                                    class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:scale-[1.02] transition-all duration-300 focus:ring-4 focus:ring-blue-200 text-sm">
+                                    <span id="submitText">Send Message & Get Free Consultation</span>
+                                    <span id="loadingText" class="hidden">Sending...</span>
+                                </button>
 
-                            <div>
-                                <label for="message" class="block text-sm font-semibold mb-1 text-slate-700">Project
-                                    Details *</label>
-                                <textarea id="message" name="message" rows="3" required
-                                    class="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white/80 backdrop-blur-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-200 transition-all duration-300 resize-none text-sm"
-                                    placeholder="Tell us about your project goals and requirements..."></textarea>
-                            </div>
-
-                            <button type="submit" id="submitBtn"
-                                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:scale-[1.02] transition-all duration-300 focus:ring-4 focus:ring-blue-200 text-sm">
-                                <span id="submitText">Send Message & Get Free Consultation</span>
-                                <span id="loadingText" class="hidden">Sending...</span>
-                            </button>
-
-                            <p class="text-xs text-slate-500 text-center">
-                                We typically respond within 2 hours during business days
-                            </p>
+                                <p class="text-xs text-slate-500 text-center">
+                                    We typically respond within 2 hours during business days
+                                </p>
                             </div> <!-- /#formFields -->
 
                             <!-- Success Message (hidden by default, shown after submit) -->
@@ -2781,7 +2801,8 @@
                                 class="hidden text-center p-8 bg-green-50 border border-green-200 rounded-xl animate-fade-in">
                                 <div class="text-green-600 text-3xl mb-3">✅</div>
                                 <h3 class="text-xl font-bold text-green-800 mb-2">Thanks!</h3>
-                                <p class="text-green-700 font-medium">We usually reply faster than your coffee cools down ☕</p>
+                                <p class="text-green-700 font-medium">We usually reply faster than your coffee cools
+                                    down ☕</p>
                                 <button type="button" id="newMessageBtn"
                                     class="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-semibold shadow focus:outline-none focus:ring-4 focus:ring-green-200 transition">
                                     Send Another Message
@@ -2820,17 +2841,22 @@
                 <div>
                     <h4 class="font-semibold text-white mb-4 text-base lg:text-lg">Company</h4>
                     <ul class="space-y-2 lg:space-y-3 text-xs lg:text-sm">
-                        <li><a href="#" class="text-gray-200 hover:text-accent transition-colors">About Us</a></li>
-                        <li><a href="#" class="text-gray-200 hover:text-accent transition-colors">Case Studies</a></li>
-
-                        <li><a href="#" class="text-gray-200 hover:text-accent transition-colors">Contact</a></li>
+                        <li><a href="#about" class="text-gray-200 hover:text-accent transition-colors">About Us</a></li>
+                        <li><a href="#services" class="text-gray-200 hover:text-accent transition-colors">Services</a>
+                        </li>
+                        <li><a href="#case-studies" class="text-gray-200 hover:text-accent transition-colors">Case
+                                Studies</a></li>
+                        <li><a href="#contact" class="text-gray-200 hover:text-accent transition-colors">Contact</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-4 text-base lg:text-lg">Connect</h4>
                     <ul class="space-y-2 lg:space-y-3 text-xs lg:text-sm">
-                        <li><a href="https://www.linkedin.com/company/109535710/admin/dashboard/" class="text-gray-200 hover:text-accent transition-colors">LinkedIn</a></li>
-                        <li><a href="https://www.instagram.com/vishnorexzone/" class="text-gray-200 hover:text-accent transition-colors">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com/company/109535710/admin/dashboard/"
+                                class="text-gray-200 hover:text-accent transition-colors">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/vishnorexzone/"
+                                class="text-gray-200 hover:text-accent transition-colors">Instagram</a></li>
                         <li><a href="mailto:vishnorextech@gmail.com"
                                 class="text-gray-200 hover:text-accent transition-colors break-all">Gmail</a>
                         </li>
@@ -3280,18 +3306,18 @@
                 setTimeout(() => {
                     modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
-                        // After modal fully closes, scroll to contact form
-                        const contactEl = document.getElementById('contact');
-                        if (contactEl) {
-                            contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            // Give the browser a moment to scroll before focusing
-                            setTimeout(() => {
-                                const firstField = document.getElementById('full-name') || contactEl.querySelector('input, select, textarea, button');
-                                if (firstField) {
-                                    firstField.focus({ preventScroll: true });
-                                }
-                            }, 600); // matches approximate scroll duration
-                        }
+                    // After modal fully closes, scroll to contact form
+                    const contactEl = document.getElementById('contact');
+                    if (contactEl) {
+                        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Give the browser a moment to scroll before focusing
+                        setTimeout(() => {
+                            const firstField = document.getElementById('full-name') || contactEl.querySelector('input, select, textarea, button');
+                            if (firstField) {
+                                firstField.focus({ preventScroll: true });
+                            }
+                        }, 600); // matches approximate scroll duration
+                    }
                 }, 300);
             }
         }
@@ -3442,7 +3468,7 @@
                         const istOffsetMinutes = 330; // 5.5 * 60
                         const istTime = new Date(now.getTime() + (istOffsetMinutes + now.getTimezoneOffset()) * 60000);
                         const pad = n => n.toString().padStart(2, '0');
-                        const istFormatted = `${istTime.getFullYear()}-${pad(istTime.getMonth()+1)}-${pad(istTime.getDate())} ${pad(istTime.getHours())}:${pad(istTime.getMinutes())}:${pad(istTime.getSeconds())} IST`;
+                        const istFormatted = `${istTime.getFullYear()}-${pad(istTime.getMonth() + 1)}-${pad(istTime.getDate())} ${pad(istTime.getHours())}:${pad(istTime.getMinutes())}:${pad(istTime.getSeconds())} IST`;
                         if (fLocalIST) fLocalIST.value = istFormatted;
                         if (fISO) fISO.value = now.toISOString();
                         if (fTZ) fTZ.value = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown';
@@ -3708,5 +3734,149 @@
 
 <!-- Floating WhatsApp & contact buttons removed per user request -->
 
+<script>
+    // Course Modal Functions
+    const courseData = {
+        fullstack: {
+            title: 'Full Stack Development',
+            description: 'Become a versatile developer by mastering both front-end and back-end technologies. This comprehensive program covers HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, and modern development practices.',
+            topics: [
+                'HTML5, CSS3, and Responsive Design',
+                'JavaScript ES6+ and TypeScript',
+                'React.js and State Management',
+                'Node.js and Express.js',
+                'MongoDB and Database Design',
+                'RESTful APIs and GraphQL',
+                'Authentication and Security',
+                'Deployment and DevOps Basics'
+            ]
+        },
+        iot: {
+            title: 'Internet of Things (IoT)',
+            description: 'Learn to build smart, connected devices and systems. Master sensors, microcontrollers, wireless communication, and cloud integration to create innovative IoT solutions.',
+            topics: [
+                'Arduino and Raspberry Pi Programming',
+                'Sensor Integration and Data Collection',
+                'Wireless Communication (WiFi, Bluetooth, LoRa)',
+                'MQTT and IoT Protocols',
+                'Cloud Platforms (AWS IoT, Azure IoT)',
+                'Data Analytics for IoT',
+                'IoT Security Best Practices',
+                'Real-world IoT Project Development'
+            ]
+        },
+        devops: {
+            title: 'Cloud DevOps',
+            description: 'Master the art of deploying and managing applications in the cloud. Learn Docker, Kubernetes, CI/CD pipelines, and cloud platforms to streamline development and operations.',
+            topics: [
+                'Linux System Administration',
+                'Docker and Containerization',
+                'Kubernetes Orchestration',
+                'CI/CD with Jenkins and GitHub Actions',
+                'AWS/Azure Cloud Services',
+                'Infrastructure as Code (Terraform)',
+                'Monitoring and Logging',
+                'Security and Compliance'
+            ]
+        },
+        python: {
+            title: 'Python Programming',
+            description: 'Learn one of the most versatile programming languages. From web development to data science, automation to AI, Python opens doors to countless opportunities.',
+            topics: [
+                'Python Fundamentals and OOP',
+                'Data Structures and Algorithms',
+                'Web Development with Django/Flask',
+                'Data Analysis with Pandas and NumPy',
+                'Automation and Scripting',
+                'API Development and Integration',
+                'Testing and Debugging',
+                'Introduction to Machine Learning'
+            ]
+        },
+        cybersecurity: {
+            title: 'Cybersecurity',
+            description: 'Protect digital assets and learn ethical hacking techniques. Understand network security, penetration testing, and security best practices to become a cybersecurity professional.',
+            topics: [
+                'Network Security Fundamentals',
+                'Ethical Hacking and Penetration Testing',
+                'Web Application Security',
+                'Cryptography and Encryption',
+                'Security Tools (Kali Linux, Metasploit)',
+                'Incident Response and Forensics',
+                'Compliance and Risk Management',
+                'Secure Coding Practices'
+            ]
+        },
+        java: {
+            title: 'Java Development',
+            description: 'Master enterprise-level programming with Java. Learn object-oriented programming, Spring Framework, and build robust, scalable applications used by Fortune 500 companies.',
+            topics: [
+                'Java Fundamentals and OOP Concepts',
+                'Collections and Generics',
+                'Spring Framework and Spring Boot',
+                'RESTful Web Services',
+                'Database Integration (JDBC, JPA)',
+                'Microservices Architecture',
+                'Testing with JUnit and Mockito',
+                'Enterprise Application Development'
+            ]
+        }
+    };
+
+    function openCourseModal(courseId) {
+        const modal = document.getElementById('course-modal');
+        const modalTitle = document.getElementById('course-modal-title');
+        const modalContent = document.getElementById('course-modal-content');
+
+        const course = courseData[courseId];
+        if (!course) return;
+
+        modalTitle.textContent = course.title;
+
+        let topicsHTML = '<ul class="space-y-2 mb-6">';
+        course.topics.forEach(topic => {
+            topicsHTML += `<li class="flex items-start gap-2">
+            <span class="text-accent mt-1">✓</span>
+            <span class="text-slate-700">${topic}</span>
+        </li>`;
+        });
+        topicsHTML += '</ul>';
+
+        modalContent.innerHTML = `
+        <p class="text-lg text-slate-600 mb-6">${course.description}</p>
+        <h4 class="font-h text-xl font-semibold mb-4 text-slate-800">What You'll Learn</h4>
+        ${topicsHTML}
+        <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-accent">
+            <p class="text-sm text-slate-700"><strong>Duration:</strong> 3 Months</p>
+            <p class="text-sm text-slate-700 mt-1"><strong>Mode:</strong> Hands-on Training with Real Projects</p>
+            <p class="text-sm text-slate-700 mt-1"><strong>Certificate:</strong> Industry-recognized completion certificate</p>
+        </div>
+    `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCourseModal() {
+        const modal = document.getElementById('course-modal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Close modal on overlay click
+    document.addEventListener('click', function (e) {
+        const modal = document.getElementById('course-modal');
+        if (e.target === modal) {
+            closeCourseModal();
+        }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeCourseModal();
+        }
+    });
+</script>
 
 </html>
